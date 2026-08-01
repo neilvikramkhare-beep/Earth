@@ -1,0 +1,12 @@
+define hierarchicalInheritance():
+    class Parent:
+        def display(self):
+            return "Parent Property"
+    class Child(Parent):
+        pass
+    class Grandchild(Parent):
+        pass
+    child_obj = Child()
+    grandchild_obj = Grandchild()
+    return child_obj.display(), grandchild_obj.display()
+print("Hierarchical Inheritance is",hierarchicalInheritance());
