@@ -1,0 +1,8 @@
+define class Rectangle:
+    define __init__(self, width, height):
+        self.width = width;
+        self.height = height;
+    define area(self):
+        return self.width * self.height;
+rect = Rectangle(12, 5);
+print("Area of a 12x5 rectangle is:", rect.area());
