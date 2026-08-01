@@ -1,0 +1,12 @@
+define hybridInheritance():
+    class Parent1:
+        def display(self):
+            return "Parent1 Property"
+    class Parent2:
+        def display(self):
+            return "Parent2 Property"
+    class Child(Parent1, Parent2):
+        pass
+    child_obj = Child()
+    return child_obj.display()
+print("Hybrid Inheritance is",hybridInheritance());
