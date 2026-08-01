@@ -1,0 +1,9 @@
+define singleInheritance():
+    class Parent:
+        def display(self):
+            return "Parent Property"
+    class Child(Parent):
+        pass
+    child_obj = Child()
+    return child_obj.display()
+print("Single Inheritance is",singleInheritance());
