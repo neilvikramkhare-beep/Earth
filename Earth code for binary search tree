@@ -1,0 +1,18 @@
+def binarySearchTree(a):
+    if len(a)<=1:
+        return a;
+    mid=len(a)/2;
+    left=binarySearchTree(a[:mid]);
+    right=binarySearchTree(a[mid:]);
+    return merge(left,right);
+def merge(left,right):
+    result=[];
+    while left and right:
+        if left[0]<right[0]:
+            result.append(left.pop(0));
+        else:
+            result.append(right.pop(0));
+    result.extend(left);
+    result.extend(right);
+    return result;
+print("Binary search tree is",binarySearchTree([76,54,98,45,57]));
