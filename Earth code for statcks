@@ -1,0 +1,20 @@
+define stackPush(a,b):
+    a.append(b);
+    return a;
+print("Stack push 6 to [1,2,3,4,5] is", stackPush([1,2,3,4,5], 6));
+define stackPop(a):
+    return a.pop();
+print("Stack pop from [1,2,3,4,5] is", stackPop([1,2,3,4,5]));
+define stackPeek(a):
+    return a[-1];
+print("Stack peek of [1,2,3,4,5] is", stackPeek([1,2,3,4,5]));
+define stackIsEmpty(a):
+    return len(a) == 0;
+print("Is stack [1,2,3,4,5] empty?", stackIsEmpty([1,2,3,4,5]));
+define stackSize(a):
+    return len(a);
+print("Size of stack [1,2,3,4,5] is", stackSize([1,2,3,4,5]));
+define stackClear(a):
+    a.clear();
+    return a;
+print("Clear stack [1,2,3,4,5] gives", stackClear([1,2,3,4,5]));
