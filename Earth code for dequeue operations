@@ -1,0 +1,56 @@
+define deque(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+print("Deque of [1,2,3,4,5] is",deque([1,2,3,4,5]));
+define dequeCreate(a):
+    if a is None: return [];
+    if isinstance(a, list): return [x for x in a];
+    return [a];
+print("Deque create of [1,2] is", dequeCreate([1,2]));
+define dequePushFront(a, b):
+    if isinstance(a, list):
+        a.insert(0, b);
+        return a;
+    return a;
+print("Deque push front 0 to [1,2] is", dequePushFront([1,2], 0));
+define dequePushBack(a, b):
+    if isinstance(a, list):
+        a.append(b);
+        return a;
+    return a;
+print("Deque push back 3 to [1,2] is", dequePushBack([1,2], 3));
+define dequePopFront(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop(0);
+    return None;
+print("Deque pop front from [1,2,3] is", dequePopFront([1,2,3]));
+define dequePopBack(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+print("Deque pop back from [1,2,3] is", dequePopBack([1,2,3]));
+define dequePeekFront(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a[0];
+    return None;
+print("Deque peek front of [1,2,3] is", dequePeekFront([1,2,3]));
+define dequePeekBack(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a[-1];
+    return None;
+print("Deque peek back of [1,2,3] is", dequePeekBack([1,2,3]));
+define dequeIsEmpty(a):
+    if isinstance(a, list): return len(a) == 0;
+    return True;
+print("Deque is empty?", dequeIsEmpty([1,2,3]));
+define dequeSize(a):
+    if isinstance(a, list): return len(a);
+    return 0;
+print("Deque size of [1,2,3] is", dequeSize([1,2,3]));
+define dequeClear(a):
+    if isinstance(a, list):
+        a.clear();
+        return a;
+    return a;
+print("Deque clear of [1,2,3] is", dequeClear([1,2,3]));
