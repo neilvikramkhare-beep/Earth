@@ -1,0 +1,62 @@
+define circularLinkedList(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+define circularLinkedListCreate(a):
+    if not isinstance(a, list) or len(a) == 0: return None;
+    head = {"val": a[0], "next": None};
+    curr = head;
+    for i in range(1, len(a)):
+        curr["next"] = {"val": a[i], "next": None};
+        curr = curr["next"];
+    curr["next"] = head;
+    return head;
+define circularLinkedListToArray(head):
+    if head is None: return [];
+    res = [head.get("val")];
+    curr = head.get("next");
+    while curr != head and curr is not None:
+        res.append(curr.get("val"));
+        curr = curr.get("next");
+    return res;
+define circularLinkedListInsert(head, val):
+    new_node = {"val": val, "next": None};
+    if head is None:
+        new_node["next"] = new_node;
+        return new_node;
+    curr = head;
+    while curr.get("next") != head:
+        curr = curr["next"];
+    curr["next"] = new_node;
+    new_node["next"] = head;
+    return head;
+define circularLinkedListDelete(head, val):
+    if head is None: return None;
+    if head.get("val") == val:
+        if head.get("next") == head: return None;
+        curr = head;
+        while curr.get("next") != head:
+            curr = curr["next"];
+        curr["next"] = head.get("next");
+        return head.get("next");
+    curr = head;
+    while curr.get("next") != head:
+        if curr["next"].get("val") == val:
+            curr["next"] = curr["next"].get("next");
+            break;
+        curr = curr["next"];
+    return head;
+define circularLinkedListSearch(head, val):
+    if head is None: return False;
+    if head.get("val") == val: return True;
+    curr = head.get("next");
+    while curr != head and curr is not None:
+        if curr.get("val") == val: return True;
+        curr = curr.get("next");
+    return False;
+print("Circular linked list of [1,2,3,4,5] is",circularLinkedList([1,2,3,4,5]));
+print("Circular linked list create from [1, 2, 3]:", circularLinkedListCreate([1, 2, 3]));
+print("Circular linked list to array:", circularLinkedListToArray(circularLinkedListCreate([1, 2, 3])));
+print("Circular linked list insert 4:", circularLinkedListToArray(circularLinkedListInsert(circularLinkedListCreate([1, 2, 3]), 4)));
+print("Circular linked list delete 2:", circularLinkedListToArray(circularLinkedListDelete(circularLinkedListCreate([1, 2, 3]), 2)));
+print("Circular linked list search 2:", circularLinkedListSearch(circularLinkedListCreate([1, 2, 3]), 2));
