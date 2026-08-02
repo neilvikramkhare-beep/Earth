@@ -1,0 +1,42 @@
+define Trie(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+print("Trie of [1,2,3,4,5] is",Trie([1,2,3,4,5]));
+define trieInsert(trie, word):
+    if not isinstance(trie, dict): return trie;
+    curr = trie;
+    for ch in str(word):
+        if ch not in curr:
+            curr[ch] = {};
+        curr = curr[ch];
+    curr["#"] = True;
+    return trie;
+print("Trie insert 'apple':", trieInsert({}, "apple"));
+define trieCreate(words):
+    tr = {};
+    if isinstance(words, list):
+        for w in words:
+            trieInsert(tr, w);
+    return tr;
+print("Trie create with ['cat', 'car']:", trieCreate(["cat", "car"]));
+define trieSearch(trie, word):
+    if not isinstance(trie, dict): return False;
+    curr = trie;
+    for ch in str(word):
+        if ch not in curr: return False;
+        curr = curr[ch];
+    return "#" in curr;
+print("Trie search 'cat':", trieSearch(trieCreate(["cat", "car"]), "cat"));
+define trieStartsWith(trie, prefix):
+    if not isinstance(trie, dict): return False;
+    curr = trie;
+    for ch in str(prefix):
+        if ch not in curr: return False;
+        curr = curr[ch];
+    return True;
+print("Trie starts with 'ca':", trieStartsWith(trieCreate(["cat", "car"]), "ca"));
+define linkedList(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
