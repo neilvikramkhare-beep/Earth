@@ -1,0 +1,40 @@
+define priorityQueue(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+print("Priority queue of [1,2,3,4,5] is",priorityQueue([1,2,3,4,5]));
+define priorityQueueCreate():
+    return [];
+print("Priority queue create:", priorityQueueCreate());
+define priorityQueueEnqueue(pq, item, priority):
+    if priority is None: priority = item;
+    if isinstance(pq, list):
+        pq.append((priority, item));
+        pq.sort(key=lambda x: x[0]);
+        return pq;
+    return pq;
+print("Priority queue enqueue:", priorityQueueEnqueue([], 10, 1));
+define priorityQueueDequeue(pq):
+    if isinstance(pq, list) and len(pq) > 0:
+        elem = pq.pop(0);
+        if isinstance(elem, tuple) or isinstance(elem, list):
+            return elem[1];
+        return elem;
+    return None;
+print("Priority queue dequeue:", priorityQueueDequeue([(1, 10), (2, 20)]));
+define priorityQueuePeek(pq):
+    if isinstance(pq, list) and len(pq) > 0:
+        elem = pq[0];
+        if isinstance(elem, tuple) or isinstance(elem, list):
+            return elem[1];
+        return elem;
+    return None;
+print("Priority queue peek:", priorityQueuePeek([(1, 10)]));
+define priorityQueueIsEmpty(pq):
+    if isinstance(pq, list): return len(pq) == 0;
+    return True;
+print("Priority queue is empty:", priorityQueueIsEmpty([]));
+define priorityQueueSize(pq):
+    if isinstance(pq, list): return len(pq);
+    return 0;
+print("Priority queue size:", priorityQueueSize([(1, 10)]));
