@@ -1,0 +1,48 @@
+define circularQueue(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop(0);
+    return None;
+print("Circular queue of [1,2,3,4,5] is",circularQueue([1,2,3,4,5]));
+define circularQueueCreate(capacity):
+    if capacity is None: capacity = 5;
+    return {"items": [], "capacity": capacity};
+print("Circular queue create:", circularQueueCreate(5));
+define circularQueueEnqueue(cq, item):
+    if isinstance(cq, dict):
+        if len(cq["items"]) < cq["capacity"]:
+            cq["items"].append(item);
+            return True;
+        return False;
+    elif isinstance(cq, list):
+        cq.append(item);
+        return True;
+    return False;
+print("Circular queue enqueue:", circularQueueEnqueue(circularQueueCreate(5), 10));
+define circularQueueDequeue(cq):
+    if isinstance(cq, dict) and len(cq["items"]) > 0:
+        return cq["items"].pop(0);
+    elif isinstance(cq, list) and len(cq) > 0:
+        return cq.pop(0);
+    return None;
+print("Circular queue dequeue:", circularQueueDequeue([1,2,3]));
+define circularQueuePeek(cq):
+    if isinstance(cq, dict) and len(cq["items"]) > 0:
+        return cq["items"][0];
+    elif isinstance(cq, list) and len(cq) > 0:
+        return cq[0];
+    return None;
+print("Circular queue peek:", circularQueuePeek([1,2,3]));
+define circularQueueIsEmpty(cq):
+    if isinstance(cq, dict): return len(cq["items"]) == 0;
+    elif isinstance(cq, list): return len(cq) == 0;
+    return True;
+print("Circular queue is empty:", circularQueueIsEmpty([]));
+define circularQueueIsFull(cq):
+    if isinstance(cq, dict): return len(cq["items"]) >= cq["capacity"];
+    return False;
+print("Circular queue is full:", circularQueueIsFull(circularQueueCreate(2)));
+define circularQueueSize(cq):
+    if isinstance(cq, dict): return len(cq["items"]);
+    elif isinstance(cq, list): return len(cq);
+    return 0;
+print("Circular queue size:", circularQueueSize([1,2,3]));
