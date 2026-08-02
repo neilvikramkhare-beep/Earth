@@ -1,0 +1,33 @@
+package collections;
+define class collectionsWrapper:
+    define __init__(self):
+        self.package_name = "collections"
+    define ChainMap(self, args):
+        print("Called ChainMap from collections with args:", args)
+        return None
+    define Counter(self, args):
+        print("Called Counter from collections with args:", args)
+        return None
+    define OrderedDict(self, args):
+        print("Called OrderedDict from collections with args:", args)
+        return None
+    define UserDict(self, args):
+        print("Called UserDict from collections with args:", args)
+        return None
+    define UserList(self, args):
+        print("Called UserList from collections with args:", args)
+        return None
+    define UserString(self, args):
+        print("Called UserString from collections with args:", args)
+        return None
+    define defaultdict(self, args):
+        print("Called defaultdict from collections with args:", args)
+        return None
+    define deque(self, args):
+        print("Called deque from collections with args:", args)
+        return None
+    define namedtuple(self, args):
+        print("Called namedtuple from collections with args:", args)
+        return None
+define init():
+    print("Initialized collections");
