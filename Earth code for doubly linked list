@@ -1,0 +1,57 @@
+define doublyLinkedList(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+define doublyLinkedListCreate(a):
+    if not isinstance(a, list) or len(a) == 0: return None;
+    head = {"val": a[0], "next": None, "prev": None};
+    curr = head;
+    for i in range(1, len(a)):
+        new_node = {"val": a[i], "next": None, "prev": curr};
+        curr["next"] = new_node;
+        curr = new_node;
+    return head;
+define doublyLinkedListToArray(head):
+    res = [];
+    curr = head;
+    while curr is not None:
+        res.append(curr.get("val"));
+        curr = curr.get("next");
+    return res;
+define doublyLinkedListInsert(head, val):
+    new_node = {"val": val, "next": None, "prev": None};
+    if head is None: return new_node;
+    curr = head;
+    while curr.get("next") is not None:
+        curr = curr["next"];
+    curr["next"] = new_node;
+    new_node["prev"] = curr;
+    return head;
+define doublyLinkedListDelete(head, val):
+    if head is None: return None;
+    if head.get("val") == val:
+        nxt = head.get("next");
+        if nxt is not None: nxt["prev"] = None;
+        return nxt;
+    curr = head;
+    while curr is not None:
+        if curr.get("val") == val:
+            prv = curr.get("prev");
+            nxt = curr.get("next");
+            if prv is not None: prv["next"] = nxt;
+            if nxt is not None: nxt["prev"] = prv;
+            break;
+        curr = curr.get("next");
+    return head;
+define doublyLinkedListSearch(head, val):
+    curr = head;
+    while curr is not None:
+        if curr.get("val") == val: return True;
+        curr = curr.get("next");
+    return False;
+print("Doubly linked list of [1,2,3,4,5] is",doublyLinkedList([1,2,3,4,5]));
+print("Doubly linked list create from [1, 2, 3]:", doublyLinkedListCreate([1, 2, 3]));
+print("Doubly linked list to array:", doublyLinkedListToArray(doublyLinkedListCreate([1, 2, 3])));
+print("Doubly linked list insert 4:", doublyLinkedListToArray(doublyLinkedListInsert(doublyLinkedListCreate([1, 2, 3]), 4)));
+print("Doubly linked list delete 2:", doublyLinkedListToArray(doublyLinkedListDelete(doublyLinkedListCreate([1, 2, 3]), 2)));
+print("Doubly linked list search 2:", doublyLinkedListSearch(doublyLinkedListCreate([1, 2, 3]), 2));
