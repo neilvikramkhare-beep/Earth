@@ -1,0 +1,82 @@
+define tree(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop();
+    return None;
+print("Tree of [1,2,3,4,5] is",tree([1,2,3,4,5]));
+define treeCreateNode(val):
+    return {"val": val, "left": None, "right": None};
+print("Tree create node:", treeCreateNode(10));
+define treeInsert(root, val):
+    if root is None:
+        return {"val": val, "left": None, "right": None};
+    if val < root["val"]:
+        root["left"] = treeInsert(root["left"], val);
+    else:
+        root["right"] = treeInsert(root["right"], val);
+    return root;
+print("Tree insert 5:", treeInsert(treeCreateNode(10), 5));
+define bstInsert(root, val):
+    return treeInsert(root, val);
+print("BST insert 15:", bstInsert(treeCreateNode(10), 15));
+define bstCreate(a):
+    if isinstance(a, list):
+        r = None;
+        for x in a:
+            r = treeInsert(r, x);
+        return r;
+    return a;
+print("BST create from [2, 1, 3]:", bstCreate([2, 1, 3]));
+define treeSearch(root, val):
+    if root is None or not isinstance(root, dict): return False;
+    if root.get("val") == val: return True;
+    if val < root.get("val"):
+        return treeSearch(root.get("left"), val);
+    return treeSearch(root.get("right"), val);
+print("Tree search 5 in BST:", treeSearch(bstCreate([10, 5, 15]), 5));
+define bstSearch(root, val):
+    return treeSearch(root, val);
+print("BST search 15:", bstSearch(bstCreate([10, 5, 15]), 15));
+define treeInorder(root):
+    if root is None or not isinstance(root, dict): return [];
+    res = [];
+    res.extend(treeInorder(root.get("left")));
+    res.append(root.get("val"));
+    res.extend(treeInorder(root.get("right")));
+    return res;
+print("Tree inorder of [2, 1, 3]:", treeInorder(bstCreate([2, 1, 3])));
+define treePreorder(root):
+    if root is None or not isinstance(root, dict): return [];
+    res = [root.get("val")];
+    res.extend(treePreorder(root.get("left")));
+    res.extend(treePreorder(root.get("right")));
+    return res;
+print("Tree preorder of [2, 1, 3]:", treePreorder(bstCreate([2, 1, 3])));
+define treePostorder(root):
+    if root is None or not isinstance(root, dict): return [];
+    res = [];
+    res.extend(treePostorder(root.get("left")));
+    res.extend(treePostorder(root.get("right")));
+    res.append(root.get("val"));
+    return res;
+print("Tree postorder of [2, 1, 3]:", treePostorder(bstCreate([2, 1, 3])));
+define treeLevelOrder(root):
+    if root is None or not isinstance(root, dict): return [];
+    res = [];
+    q_list = [root];
+    while len(q_list) > 0:
+        curr = q_list.pop(0);
+        res.append(curr.get("val"));
+        if curr.get("left") is not None: q_list.append(curr.get("left"));
+        if curr.get("right") is not None: q_list.append(curr.get("right"));
+    return res;
+print("Tree level order of [2, 1, 3]:", treeLevelOrder(bstCreate([2, 1, 3])));
+define treeHeight(root):
+    if root is None or not isinstance(root, dict): return 0;
+    lh = treeHeight(root.get("left"));
+    rh = treeHeight(root.get("right"));
+    return max(lh, rh) + 1;
+print("Tree height of [2, 1, 3]:", treeHeight(bstCreate([2, 1, 3])));
+define treeSize(root):
+    if root is None or not isinstance(root, dict): return 0;
+    return 1 + treeSize(root.get("left")) + treeSize(root.get("right"));
+print("Tree size of [2, 1, 3]:", treeSize(bstCreate([2, 1, 3])));
