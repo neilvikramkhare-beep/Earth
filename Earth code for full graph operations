@@ -1,0 +1,76 @@
+define graph(a):
+    if isinstance(a, list) and len(a) > 0:
+        return a.pop(0);
+    return None;
+print("Graph of [1,2,3,4,5] is",graph([1,2,3,4,5]));
+define graphCreate():
+    return {};
+print("Graph create:", graphCreate());
+define graphAddVertex(g, v):
+    if isinstance(g, dict):
+        if v not in g:
+            g[v] = [];
+        return g;
+    return g;
+print("Graph add vertex:", graphAddVertex({}, "A"));
+define graphAddEdge(g, u, v):
+    if isinstance(g, dict):
+        if u not in g: g[u] = [];
+        if v not in g: g[v] = [];
+        if v not in g[u]: g[u].append(v);
+        if u not in g[v]: g[v].append(u);
+        return g;
+    return g;
+print("Graph add edge:", graphAddEdge({}, "A", "B"));
+define graphRemoveEdge(g, u, v):
+    if isinstance(g, dict):
+        if u in g and v in g[u]: g[u].remove(v);
+        if v in g and u in g[v]: g[v].remove(u);
+        return g;
+    return g;
+print("Graph remove edge:", graphRemoveEdge({"A": ["B"], "B": ["A"]}, "A", "B"));
+define graphRemoveVertex(g, v):
+    if isinstance(g, dict) and v in g:
+        del g[v];
+        for node in g:
+            if v in g[node]:
+                g[node].remove(v);
+        return g;
+    return g;
+print("Graph remove vertex:", graphRemoveVertex({"A": ["B"], "B": ["A"]}, "A"));
+define graphGetNeighbors(g, v):
+    if isinstance(g, dict) and v in g:
+        return g[v];
+    return [];
+print("Graph get neighbors:", graphGetNeighbors({"A": ["B", "C"]}, "A"));
+define graphHasEdge(g, u, v):
+    if isinstance(g, dict) and u in g:
+        return v in g[u];
+    return False;
+print("Graph has edge:", graphHasEdge({"A": ["B"]}, "A", "B"));
+define graphBFS(g, start):
+    if not isinstance(g, dict) or start not in g: return [];
+    visited = [];
+    q_list = [start];
+    while len(q_list) > 0:
+        curr = q_list.pop(0);
+        if curr not in visited:
+            visited.append(curr);
+            for nbr in g.get(curr, []):
+                if nbr not in visited:
+                    q_list.append(nbr);
+    return visited;
+print("Graph BFS from A:", graphBFS({"A": ["B", "C"], "B": ["D"], "C": [], "D": []}, "A"));
+define graphDFS(g, start):
+    if not isinstance(g, dict) or start not in g: return [];
+    visited = [];
+    stk_list = [start];
+    while len(stk_list) > 0:
+        curr = stk_list.pop();
+        if curr not in visited:
+            visited.append(curr);
+            for nbr in reversed(g.get(curr, [])):
+                if nbr not in visited:
+                    stk_list.append(nbr);
+    return visited;
+print("Graph DFS from A:", graphDFS({"A": ["B", "C"], "B": ["D"], "C": [], "D": []}, "A"));
