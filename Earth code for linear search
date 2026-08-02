@@ -1,0 +1,6 @@
+define linearSearch(a,b):
+    for i in range(len(a)):
+        if a[i]==b:
+            return i;
+    return -1;
+print("Linear search of 5 in [1,2,3,4,5] is",linearSearch([1,2,3,4,5],5));
