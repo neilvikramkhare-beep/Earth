@@ -1,0 +1,4 @@
+import iostream
+define main():
+    print("hello world");
+main()
