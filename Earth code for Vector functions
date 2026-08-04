@@ -1,0 +1,181 @@
+import math
+
+define class Vector:
+    define __init__(self, x: float, y: float, z: float = 0):
+        self.x = x
+        self.y = y
+        self.z = z
+    
+    // String representation
+    define __str__(self) -> str:
+        return f"Vector({self.x}, {self.y}, {self.z})"
+    
+    define __repr__(self) -> str:
+        return f"Vector(x={self.x}, y={self.y}, z={self.z})"
+    
+    // Arithmetic operators
+    define __add__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x + other.x, self.y + other.y, self.z + other.z)
+        elif isinstance(other, (int, float)):
+            return Vector(self.x + other, self.y + other, self.z + other)
+        return NotImplemented
+    
+    define __sub__(self, other):
+        if isinstance(other, Vector):
+            return Vector(self.x - other.x, self.y - other.y, self.z - other.z)
+        return NotImplemented
+    
+    define __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector(self.x * other, self.y * other, self.z * other)
+        elif isinstance(other, Vector):
+            # Dot product
+            return self.x * other.x + self.y * other.y + self.z * other.z
+        return NotImplemented
+    
+    define __truediv__(self, other):
+        if isinstance(other, (int, float)):
+            return Vector(self.x / other, self.y / other, self.z / other)
+        return NotImplemented
+    
+    define __pow__(self, exponent):
+        # Vector exponentiation (scalar exponent)
+        if isinstance(exponent, (int, float)):
+            magnitude = self.magnitude() ** exponent
+            direction = self.normalize()
+            return direction * magnitude
+        return NotImplemented
+    
+    // Reflection operators (for operations where left operand doesn't support)
+    define __radd__(self, other):
+        return self.__add__(other)
+    
+    define __rmul__(self, other):
+        return self.__mul__(other)
+    
+    // In-place operators
+    define __iadd__(self, other):
+        if isinstance(other, Vector):
+            self.x += other.x
+            self.y += other.y
+            self.z += other.z
+        elif isinstance(other, (int, float)):
+            self.x += other
+            self.y += other
+            self.z += other
+        return self
+    
+    define __imul__(self, other):
+        if isinstance(other, (int, float)):
+            self.x *= other
+            self.y *= other
+            self.z *= other
+        return self
+    
+    // Unary operators
+    define __neg__(self):
+        return Vector(-self.x, -self.y, -self.z)
+    
+    define __pos__(self):
+        return Vector(+self.x, +self.y, +self.z)
+    
+    define __abs__(self):
+        return self.magnitude()
+    
+    // Comparison operators
+    define __eq__(self, other):
+        if not isinstance(other, Vector):
+            return False
+        return self.x == other.x and self.y == other.y and self.z == other.z
+    
+    define __lt__(self, other):
+        return self.magnitude() < other.magnitude()
+    
+    define __le__(self, other):
+        return self.magnitude() <= other.magnitude()
+    
+    define __gt__(self, other):
+        return self.magnitude() > other.magnitude()
+    
+    define __ge__(self, other):
+        return self.magnitude() >= other.magnitude()
+    
+    // Container/slot operators
+    define __getitem__(self, index):
+        if index == 0 or index == 'x':
+            return self.x
+        elif index == 1 or index == 'y':
+            return self.y
+        elif index == 2 or index == 'z':
+            return self.z
+        raise IndexError("Vector index out of range")
+    
+    define __setitem__(self, index, value):
+        if index == 0 or index == 'x':
+            self.x = value
+        elif index == 1 or index == 'y':
+            self.y = value
+        elif index == 2 or index == 'z':
+            self.z = value
+        else:
+            raise IndexError("Vector index out of range")
+    
+    define __len__(self):
+        return 3
+    
+    define __contains__(self, value):
+        return value in (self.x, self.y, self.z)
+    
+    // Callable object
+    define __call__(self, scalar: float):
+        return Vector(self.x * scalar, self.y * scalar, self.z * scalar)
+    
+    // Conversion operators
+    define __int__(self):
+        return int(self.magnitude())
+    
+    define __float__(self):
+        return float(self.magnitude())
+    
+    define __bool__(self):
+        return self.magnitude() != 0
+    
+    define __complex__(self):
+        return complex(self.x, self.y)
+    
+    // Context manager support
+    define __enter__(self):
+        print(f"Entering vector context: {self}")
+        return self
+    
+    define __exit__(self, exc_type, exc_val, exc_tb):
+        print(f"Exiting vector context: {self}")
+    
+    // Additional methods
+    define magnitude(self) -> float:
+        return math.sqrt(self.x**2 + self.y**2 + self.z**2)
+    
+    define normalize(self) -> 'Vector':
+        mag = self.magnitude()
+        if mag == 0:
+            return Vector(0, 0, 0)
+        return Vector(self.x / mag, self.y / mag, self.z / mag)
+    
+    define cross(self, other: 'Vector') -> 'Vector':
+        return Vector(
+            self.y * other.z - self.z * other.y,
+            self.z * other.x - self.x * other.z,
+            self.x * other.y - self.y * other.x
+        )
+
+// Usage examples
+v1 = Vector(1, 2, 3)
+v2 = Vector(4, 5, 6)
+
+print("v1 + v2 =", v1 + v2)
+print("v1 * 3 =", v1 * 3)
+print("v1 dot v2 =", v1 * v2)
+print("v1 cross v2 =", v1.cross(v2))
+print("Magnitude of v1:", v1.magnitude())
+print("Normalized v1:", v1.normalize())
