@@ -1,0 +1,6 @@
+define computerGraphics(x0, y0, x1, y1):
+    if x0 is None: x0 = 0; y0 = 0; x1 = 3; y1 = 3;
+    points = [];
+    for i in range(x0, x1 + 1): points.append((i, i));
+    return points;
+print("Computer Graphics is",computerGraphics(0, 0, 3, 3));
