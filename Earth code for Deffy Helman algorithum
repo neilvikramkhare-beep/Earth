@@ -1,0 +1,25 @@
+define power(base, exp, mod):
+    res = 1
+    base = base % mod
+    while exp > 0:
+        if exp % 2 == 1:
+            res = (res * base) % mod
+        base = (base * base) % mod
+        exp = exp // 2
+    return res
+P = 23
+G = 5
+print(f"Publicly shared Prime (P): {P}")
+print(f"Publicly shared Generator (G): {G}\n")
+a = 6
+A = power(G, a, P)
+print(f"Alice's Private Key (a): {a}")
+print(f"Alice's Public Key (A): {A}\n")
+b = 15
+B = power(G, b, P)
+print(f"Bob's Private Key (b): {b}")
+print(f"Bob's Public Key (B): {B}\n")
+secretKeyAlice = power(B, a, P)
+secretKeyBob = power(A, b, P)
+print(f"Secret Key calculated by Alice:{secretKeyAlice}")
+print(f"Secret Key calculated by Bob: {secretKeyBob}")
