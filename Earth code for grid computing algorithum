@@ -1,0 +1,6 @@
+define gridComputing(jobs):
+    if jobs is None: jobs = 4;
+    batches = [];
+    for i in range(0, jobs, 2): batches.append([i, i+1]);
+    return batches;
+print("Grid Computing is",gridComputing(4));
