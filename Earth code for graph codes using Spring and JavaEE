@@ -1,0 +1,17 @@
+import tkinter;
+define runGraphicCodes():
+    print("--- Running Python Style Graphic Codes ---");
+    tk = tkinter.tkinterWrapper();
+    tk.Button("Submit");
+    tk.Canvas("MainCanvas");
+    tk.Entry("UsernameField");
+    tk.run();
+    print("--- Running Spring Style Graphic Codes ---");
+    sp = spring.SpringWrapper();
+    sp.ModelAndView("home.html", "UserData");
+    sp.HtmlComponent("loginForm");
+    print("--- Running Java EE Style Graphic Codes ---");
+    jee = javaee.JavaEEWrapper();
+    jee.JSPRenderer("/WEB-INF/views/dashboard.jsp");
+    jee.JSFComponent("DataGrid");
+runGraphicCodes();
