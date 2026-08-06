@@ -1,0 +1,13 @@
+define graphBFS(g, start):
+    if not isinstance(g, dict) or start not in g: return [];
+    visited = [];
+    q_list = [start];
+    while len(q_list) > 0:
+        curr = q_list.pop(0);
+        if curr not in visited:
+            visited.append(curr);
+            for nbr in g.get(curr, []):
+                if nbr not in visited:
+                    q_list.append(nbr);
+    return visited;
+print("Graph BFS from A:", graphBFS({"A": ["B", "C"], "B": ["D"], "C": [], "D": []}, "A"));
