@@ -1,0 +1,47 @@
+define power(base, exp, mod):
+    res = 1
+    base = base % mod
+    while exp > 0:
+        if exp % 2 == 1:
+            res = (res * base) % mod
+        base = (base * base) % mod
+        exp = exp // 2
+    return res
+print("--- Diffie-Hellman Man-in-the-Middle Simulation ---\n")
+P = 23
+G = 5
+print(f"Publicly shared Prime (P): {P}")
+print(f"Publicly shared Generator (G): {G}\n")
+a = 6
+A = power(G, a, P)
+print(f"Alice's Private Key (a): {a}")
+print(f"Alice sends her Public Key (A) = {A} to Bob...")
+print("\n[!] EVE INTERCEPTS ALICE'S KEY [!]")
+eve_private_alice = 10
+Eve_public_alice = power(G, eve_private_alice, P)
+print(f"Eve generates her Private Key for Alice: {eve_private_alice}")
+print(f"Eve sends HER Public Key = {Eve_public_alice} to Bob, pretending to be Alice.\n")
+# 3. Bob generates his keys
+b = 15
+B = power(G, b, P)
+print(f"Bob's Private Key (b): {b}")
+print(f"Bob sends his Public Key (B) = {B} to Alice...")
+print("\n[!] EVE INTERCEPTS BOB'S KEY [!]")
+eve_private_bob = 12
+Eve_public_bob = power(G, eve_private_bob, P)
+print(f"Eve generates her Private Key for Bob: {eve_private_bob}")
+print(f"Eve sends HER Public Key = {Eve_public_bob} to Alice, pretending to be Bob.\n")
+secretKeyAlice = power(Eve_public_bob, a, P)
+secretKeyBob = power(Eve_public_alice, b, P)
+secretKeyEve_Alice = power(A, eve_private_bob, P)
+secretKeyEve_Bob = power(B, eve_private_alice, P)
+print("--- Calculated Secret Keys ---")
+print(f"Secret Key calculated by Alice: {secretKeyAlice}")
+print(f"Secret Key calculated by Bob:   {secretKeyBob}")
+print(f"Eve's Secret Key with Alice:    {secretKeyEve_Alice}")
+print(f"Eve's Secret Key with Bob:      {secretKeyEve_Bob}")
+print("\n--- Attack Result ---")
+if secretKeyAlice == secretKeyEve_Alice and secretKeyBob == secretKeyEve_Bob:
+    print("SUCCESS: Man-in-the-Middle Attack successful!")
+    print("Alice and Bob do not share the same key. Eve shares a key with both of them.")
+    print("Eve can now decrypt messages from Alice using key", secretKeyEve_Alice, ", read/modify them, and re-encrypt them for Bob using key", secretKeyEve_Bob, "!")
