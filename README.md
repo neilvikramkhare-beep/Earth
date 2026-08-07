@@ -2496,3 +2496,137 @@ define runGraphicCodes():
     jee.JSPRenderer("/WEB-INF/views/dashboard.jsp");
     jee.JSFComponent("DataGrid");
 runGraphicCodes();
+INSTALLATION COMMANDS
+Write-Host "Installing PyInstaller..."
+pip install pyinstaller
+
+Write-Host "Compiling Earth Compiler into earth.exe..."
+pyinstaller --noconfirm --onefile --name "earth" --add-data "SL_Packages;SL_Packages" earth_compiler.py
+
+if (-not (Test-Path "dist\earth.exe")) {
+    Write-Host "Failed to build earth.exe!"
+    exit 1
+}
+
+Write-Host "Compiling Earth Installer into EarthSetup.exe..."
+pyinstaller --noconfirm --onefile --name "EarthSetup" --add-data "dist\earth.exe;earth_dist" earth_installer.py
+
+if (Test-Path "dist\EarthSetup.exe") {
+    Write-Host "Successfully built dist\EarthSetup.exe!"
+} else {
+    Write-Host "Failed to build EarthSetup.exe!"
+}
+$earthDir = "C:\Users\Admin\Desktop\Earth"
+$earthBat = "$earthDir\earth.bat"
+
+Write-Host "Adding Earth to User PATH..."
+$userPath = [Environment]::GetEnvironmentVariable("Path", "User")
+if ($userPath -notmatch [regex]::Escape($earthDir)) {
+    $newPath = $userPath
+    if (-not $newPath.EndsWith(";")) {
+        $newPath += ";"
+    }
+    $newPath += $earthDir
+    [Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+    Write-Host "Successfully added $earthDir to PATH."
+} else {
+    Write-Host "Earth directory is already in the PATH."
+}
+
+Write-Host "Registering .sl file extension..."
+# Register extension in HKCU so it doesn't require Admin privileges
+$extensionPath = "HKCU:\Software\Classes\.sl"
+$progIdPath = "HKCU:\Software\Classes\EarthScript"
+
+if (-not (Test-Path $extensionPath)) {
+    New-Item -Path $extensionPath -Force | Out-Null
+}
+Set-ItemProperty -Path $extensionPath -Name "(Default)" -Value "EarthScript"
+
+if (-not (Test-Path $progIdPath)) {
+    New-Item -Path $progIdPath -Force | Out-Null
+}
+Set-ItemProperty -Path $progIdPath -Name "(Default)" -Value "Earth Script File"
+
+$commandPath = "$progIdPath\shell\open\command"
+if (-not (Test-Path $commandPath)) {
+    New-Item -Path $commandPath -Force | Out-Null
+}
+# Wrap the command to execute earth.bat and pass the file as argument
+$commandString = "`"$earthBat`" `"%1`" %*"
+Set-ItemProperty -Path $commandPath -Name "(Default)" -Value $commandString
+
+Write-Host "Successfully associated .sl extension with Earth."
+Write-Host "Please restart your terminal to apply the PATH changes."
+<#
+.SYNOPSIS
+    Interpreter launcher for .sl script files.
+.DESCRIPTION
+    Reads a .sl file and executes it using the Earth Compiler engine (earth_compiler.py).
+    Allows `script.sl` to be invoked seamlessly through `interpreter.ps1` on Windows.
+#>
+
+param(
+    [Parameter(Position=0, ValueFromPipelineByPropertyName=$true)]
+    [string]$Path = (Join-Path -Path $PSScriptRoot -ChildPath 'script.sl')
+)
+
+function Get-PythonExecutable {
+    foreach ($command in 'py', 'python', 'python3') {
+        $entry = Get-Command $command -ErrorAction SilentlyContinue
+        if ($entry) {
+            return $entry.Source
+        }
+    }
+    return $null
+}
+
+if (-not (Test-Path -Path $Path)) {
+    Write-Error "Script file not found: $Path"
+    exit 1
+}
+
+$pythonExe = Get-PythonExecutable
+if (-not $pythonExe) {
+    Write-Error "Python executable not found on PATH. Install Python and retry."
+    exit 1
+}
+
+$compilerScript = Join-Path -Path $PSScriptRoot -ChildPath "earth_compiler.py"
+Write-Host "Executing '$Path' using Earth Compiler..." -ForegroundColor Cyan
+& $pythonExe $compilerScript $Path
+Bash commands
+#!/usr/bin/env bash
+# Installer for Earth Language on Unix-based systems (Linux, macOS)
+
+echo "===================================="
+echo "       Earth Language Setup"
+echo "===================================="
+
+# Get the directory where this script is located
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Make the wrapper scripts executable
+echo "Making scripts executable..."
+chmod +x "$DIR/earth"
+chmod +x "$DIR/earth-build"
+chmod +x "$DIR/earth-ide"
+
+# Determine target bin directory
+if [ -d "$HOME/.local/bin" ]; then
+    BIN_DIR="$HOME/.local/bin"
+    mkdir -p "$BIN_DIR"
+else
+    BIN_DIR="/usr/local/bin"
+    echo "Installing to $BIN_DIR may require sudo privileges."
+fi
+
+echo "Installing to $BIN_DIR..."
+
+# Create symbolic links in the bin directory
+ln -sf "$DIR/earth" "$BIN_DIR/earth"
+ln -sf "$DIR/earth-build" "$BIN_DIR/earth-build"
+ln -sf "$DIR/earth-ide" "$BIN_DIR/earth-ide"
+
+echo "Installation Complete! You can now use the 'earth', 'earth-build', and 'earth-ide' commands globally."
+echo "Please make sure $BIN_DIR is in your PATH."
