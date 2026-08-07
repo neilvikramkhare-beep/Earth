@@ -1,0 +1,33 @@
+define rectangle(l,b):
+    if isinstance(l, list): l = len(l)
+    if isinstance(b, list) or b is None: b = l
+    return l*b;
+print("Rectangle of [1,2,3,4,5] is",rectangle([1,2,3,4,5]));
+define square(a):
+    if isinstance(a, list): a = len(a)
+    return a*a;
+print("Square of [1,2,3,4,5] is",square([1,2,3,4,5]));
+define circle(r):
+    if isinstance(r, list): r = len(r)
+    return 3.14*r*r;
+print("Circle of [1,2,3,4,5] is",circle([1,2,3,4,5]));
+define triangle(a,b):
+    if isinstance(a, list): a = len(a)
+    if isinstance(b, list) or b is None: b = a
+    return 0.5*a*b;
+print("Triangle of [1,2,3,4,5] is",triangle([1,2,3,4,5]));
+define hexagon(a):
+    if isinstance(a, list): a = len(a)
+    return 2.598*a*a;
+print("Hexagon of [1,2,3,4,5] is",hexagon([1,2,3,4,5]));
+define oval(a,b):
+    if isinstance(a, list): a = len(a)
+    if isinstance(b, list) or b is None: b = a
+    return 3.14*a*b;
+print("Oval of [1,2,3,4,5] is",oval([1,2,3,4,5]));
+define trapezoid(a,b,h):
+    if isinstance(a, list): a = len(a)
+    if isinstance(b, list) or b is None: b = a
+    if isinstance(h, list) or h is None: h = a
+    return 0.5*(a+b)*h;
+print("Trapezoid of [1,2,3,4,5] is",trapezoid([1,2,3,4,5]));
