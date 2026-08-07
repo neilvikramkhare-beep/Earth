@@ -1,0 +1,16 @@
+define class Employee:
+    define __init__(self, role, dept, salary):
+        self.role = role;
+        self.dept = dept;
+        self.salary = salary;
+    define showDetails(self):
+        print("Role=", self.role);
+        print("Department=", self.dept);
+        print("Salary=", self.salary);
+define class Engineer(Employee):
+    define __init__(self, name, age):
+        super().__init__("Engineer", "IT", "75000");
+        self.name = name;
+        self.age = age;
+e1 = Engineer("Suyash Sharma", 23);
+e1.showDetails();
