@@ -1,0 +1,6 @@
+define rainwaterTrapping(a,b,h):
+    if isinstance(a, list): a = len(a)
+    if isinstance(b, list) or b is None: b = a
+    if isinstance(h, list) or h is None: h = a
+    return 0.5*(a+b)*h;
+print("Rainwater Trapping of [1,2,3,4,5] is",rainwaterTrapping([1,2,3,4,5]));
