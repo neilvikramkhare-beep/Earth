@@ -1,0 +1,13 @@
+define class Father:
+    define skill1(self):
+        print("Father's skill: Gardening");
+define class Mother:
+    define skill2(self):
+        print("Mother's skill: Cooking");
+define class Child(Father, Mother):
+    define skill3(self):
+        print("Child's skill:Drawing");
+child_c = Child();
+child_c.skill1();
+child_c.skill2();
+child_c.skill3();
