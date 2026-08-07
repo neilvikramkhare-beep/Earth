@@ -1,0 +1,19 @@
+define class Car:
+    define __init__(self):
+        self.car1 = "The brand of the car is Toyota.";
+define class Mileage:
+    define __init__(self):
+        self.car2 = "The mileage of the car is 1500.";
+define class Account(Car, Mileage):
+    define __init__(self):
+        super().__init__();       
+        Mileage.__init__(self);   
+        self.car3_cost = "The cost of car is 31 lakhs.";
+        self.car3_acko = "Acko is giving 87% insurance claim on it.";
+        self.car3_tata = "TATA is giving 89% insurance claim on it.";
+a = Account();
+print(a.car1);
+print(a.car2);
+print(a.car3_cost);
+print(a.car3_acko);
+print(a.car3_tata);
