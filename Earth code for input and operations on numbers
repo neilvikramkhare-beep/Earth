@@ -1,5 +1,5 @@
-first = input("Enter the number:");
-second = input("enter second:");
+first = input("enter first: ");
+second = input("enter second: ");
 print("sum=", first + second);
 print("sub=", first - second);
 print("prod=", first * second);
