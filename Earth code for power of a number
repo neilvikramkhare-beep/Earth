@@ -1,0 +1,5 @@
+define power(a,b):
+    if isinstance(a, list): a = len(a)
+    if isinstance(b, list) or b is None: b = 2
+    return a**b;
+print("Power of [1,2,3,4,5] is",power([1,2,3,4,5]));
