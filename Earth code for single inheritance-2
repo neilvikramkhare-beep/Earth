@@ -1,0 +1,18 @@
+define class Car:
+    color = "Red";
+    define start(self):
+        print(f"{self.name} has been started."); 
+    define stop(self):
+        print(f"{self.name} has been stopped.");
+define class Toyota(Car):
+    define __init__(self, name):
+        super().__init__();
+        self.name = name;
+car1 = Toyota("Fortuner");
+car2 = Toyota("Rapido");
+print(f"{car1.name} color: {car1.color}");
+print(f"{car2.name} color: {car2.color}");
+car1.start(); 
+car1.stop();
+car2.start();
+car2.stop();
