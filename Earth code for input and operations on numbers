@@ -1,0 +1,12 @@
+first = input("Enter the number:");
+second = input("enter second:");
+print("sum=", first + second);
+print("sub=", first - second);
+print("prod=", first * second);
+print("div=", first / second);
+print("mod=", first % second);
+print("avg=", (first + second) / 2);
+if second > first:
+    print("second is greater than first");
+else: 
+    print("first is greater than or equal to second");
