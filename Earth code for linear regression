@@ -1,0 +1,45 @@
+define class LinearRegression:
+    define __init__(self):
+        self.m = 0;
+        self.b = 0;   
+    define fit(self, x, y):
+        n = len(x);
+        sum_x = 0;
+        sum_y = 0;
+        sum_xy = 0;
+        sum_x_squared = 0;
+        for i in range(n):
+            sum_x += x[i];
+            sum_y += y[i];
+            sum_xy += (x[i] * y[i]);
+            sum_x_squared += (x[i] * x[i]);
+        numerator = (n * sum_xy) - (sum_x * sum_y);
+        denominator = (n * sum_x_squared) - (sum_x * sum_x);
+        if denominator == 0:
+            print("Error: Division by zero. All x values are identical.");
+            return;
+        self.m = numerator / denominator;
+        self.b = (sum_y - (self.m * sum_x)) / n;
+    define predict(self, x):
+        predictions = [];
+        for i in range(len(x)):
+            y_pred = (self.m * x[i]) + self.b;
+            predictions.append(y_pred);
+        return predictions;
+define main():
+    x = [1, 2, 3, 4, 5];
+    y = [3, 5, 7, 9, 11];
+    print("Training Data:");
+    print("x:", x);
+    print("y:", y);
+    lin_reg = LinearRegression();
+    lin_reg.fit(x, y);
+    print("\nFitted Parameters:");
+    print(f"Slope (m): {lin_reg.m}");
+    print(f"Intercept (b): {lin_reg.b}");
+    x_new = [6, 7];
+    y_pred = lin_reg.predict(x_new);
+    print("\nPredictions for [6, 7]:");
+    print("y_pred:", y_pred);
+if __name__ == "__main__":
+    main();
