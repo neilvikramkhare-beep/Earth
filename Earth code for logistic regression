@@ -1,0 +1,58 @@
+define class LogisticRegression:
+    define __init__(self, learning_rate=0.01, epochs=1000):
+        self.learning_rate = learning_rate;
+        self.epochs = epochs;
+        self.w = 0; 
+        self.b = 0; 
+    define _sigmoid(self, z):
+        e = 2.718281828459045;
+        return 1 / (1 + (e ** -z));
+    define fit(self, x, y):
+        n = len(x);
+        for epoch in range(self.epochs):
+            dw = 0;
+            db = 0;
+            for i in range(n):
+                z = (self.w * x[i]) + self.b;
+                y_pred = self._sigmoid(z);
+                error = y_pred - y[i];
+                dw += (error * x[i]);
+                db += error;
+            dw = dw / n;
+            db = db / n;
+            self.w -= (self.learning_rate * dw);
+            self.b -= (self.learning_rate * db);
+    define predict_prob(self, x):
+        probabilities = [];
+        for i in range(len(x)):
+            z = (self.w * x[i]) + self.b;
+            probabilities.push(self._sigmoid(z));
+        return probabilities;
+    define predict(self, x, threshold=0.5):
+        probs = self.predict_prob(x);
+        predictions = [];
+        for p in probs:
+            if p >= threshold:
+                predictions.push(1);
+            else:
+                predictions.push(0);
+        return predictions;
+define main():
+    x = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0];
+    y = [0,   0,   0,   0,   1,   1,   1,   1,   1];
+    print("Training Data:");
+    print("x (Study Hours):", x);
+    print("y (Passed):", y);
+    log_reg = LogisticRegression(0.1, 2000);
+    log_reg.fit(x, y);
+    print("\nFitted Parameters:");
+    print(f"Weight (w): {log_reg.w}");
+    print(f"Bias (b): {log_reg.b}");
+    x_new = [3.5, 4.5, 5.5];
+    y_prob = log_reg.predict_prob(x_new);
+    y_pred = log_reg.predict(x_new);
+    print("\nPredictions for Study Hours [3.5, 4.5, 5.5]:");
+    print("Probabilities:", y_prob);
+    print("Classes (Threshold 0.5):", y_pred);
+if __name__ == "__main__":
+    main();
