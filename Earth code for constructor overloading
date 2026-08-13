@@ -1,0 +1,15 @@
+class construct:
+    def __init__(self, a=None, b=None):
+        if a is not None and b is not None:
+            self.area = a * b;
+        else:
+            self.area = 0;
+    define display(self):
+        print(self.area);
+define main():
+    c = construct();
+    c2 = construct(63, 23);
+    c.display();
+    c2.display();
+if __name__ == "__main__":
+    main();
