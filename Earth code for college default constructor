@@ -1,0 +1,31 @@
+define class college:
+    define __init__(self):
+        self.course = "Computer engineer";
+        self.name = "";
+        self.post = "";
+        self.roll = 0;
+    define input(self):
+        self.name = input("enter a name:");
+        self.post = input("enter a post:");
+        self.roll = int(input("enter a roll number:"));
+    define display(self):
+        print(f"Name:{self.name}");
+        print(f"Post:{self.post}");
+        print(f"Course:{self.course}");
+        print(f"Roll number:{self.roll}");
+define main():
+    students = [];
+    for i in range(2):
+        students.append(college());
+    for i in range(2):
+        print(f"enter details of student:{i+1}");
+        students[i].input();
+        print();
+    print("student details:");
+    for i in range(2):
+        students[i].display();
+        print();
+        students[i].display();
+        students[i].input();
+if __name__ == "__main__":
+    main();
