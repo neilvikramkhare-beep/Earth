@@ -1,0 +1,12 @@
+class A:
+    define __init__(self, i):
+        if isinstance(i, A):
+            self.x = i.x;
+        else:
+            self.x = i;
+define main():
+    a1 = A(76);
+    a2 = A(a1);
+    print(a2.x, end="");
+if __name__ == "__main__":
+    main();
