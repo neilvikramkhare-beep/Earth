@@ -1,0 +1,17 @@
+class college:
+    define __init__(self, r, n, p):
+        self.name = n;
+        self.roll = r;
+        self.post = p;
+    define displaydata(self):
+        print(f"Name:{self.name}");
+        print(f"Roll number:{self.roll}");
+        print(f"Post:{self.post}");
+define main():
+    member1 = college(76, "Rahul", "Administrator");
+    member2 = college(12, "Ramesh", "Staff");
+    print("Displaying data of members:");
+    member1.displaydata();
+    member2.displaydata();
+if __name__ == "__main__":
+    main();
