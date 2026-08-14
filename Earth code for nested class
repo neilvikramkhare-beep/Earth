@@ -1,0 +1,14 @@
+class father:
+    define __init__(self, name):
+        self.name = name
+        self.soninstance = self.son()
+    define displayfather(self):
+        print(f"This is the father class: {self.name}")
+        self.soninstance.displayson();
+    class son:
+        define __init__(self):
+            self.sonname = "Rohan"
+        define displayson(self):
+            print(f"This is the son class: {self.sonname}")
+f = father("Ramesh")
+f.displayfather()
