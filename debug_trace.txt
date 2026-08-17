@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Admin\Desktop\Earth\debug.py", line 7, in <module>
+    exec(code, namespace)
+    ~~~~^^^^^^^^^^^^^^^^^
+  File "<string>", line 1790
+    __import_sl__(['hashlib'])
+IndentationError: unexpected indent
+
+
+Code at line 7:
+    print("Sorry , you are not boss")

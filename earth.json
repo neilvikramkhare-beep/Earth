@@ -1,0 +1,9 @@
+﻿{
+    "version": "1.0",
+    "description": "The Earth programming language compiler.",
+    "homepage": "https://github.com",
+    "license": "MIT",
+    "url": "https://github.com/releases/download/v1.0/earth.exe",
+    "hash": "",
+    "bin": "earth.exe"
+}
