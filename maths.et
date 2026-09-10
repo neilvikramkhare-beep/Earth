@@ -1,0 +1,67 @@
+define add(a,b):
+    return a+b
+define sub(a,b):
+    return a-b
+define mul(a,b):
+    return a*b
+define div(a,b):
+    return a/b
+define pow(a,b):
+    return a**b
+define mod(a,b):
+    return a%b
+define AddDiv(a,b):
+    return (a+b)/2
+define SubMul(a,b):
+    return (a-b)*2
+define max(a,b):
+    if a>b:
+        return a
+    else:
+        return b
+define min(a,b):
+    if a<b:
+        return a
+    else:
+        return b
+define abs(a):
+    if a<0:
+        return -a
+    else:
+        return a
+define sqrt(a):
+    return a**0.5
+define factorial(n):
+    if n==0:
+        return 1
+    else:
+        return n*factorial(n-1)
+define gcd(a,b):    
+    while b:
+        a, b = b, a % b
+    return a
+define lcm(a,b):
+    return (a*b)
+define is_prime(n):
+    if n<=1:
+        return False
+    for i in range(2,int(n**0.5)+1):
+        if n%i==0:
+            return False
+    return True
+define prime_factors(n):
+    factors = []
+    for i in range(2, int(n**0.5)+1):
+        while n%i==0:
+            factors.append(i)
+            n
+    if n>1:
+        factors.append(n)
+    return factors
+define ceil(a):
+    if a==int(a):
+        return int(a)
+    else:
+        return int(a)+1
+define floor(a):
+        return int(a)

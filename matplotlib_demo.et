@@ -1,0 +1,70 @@
+import matplotlib.pyplot as plt
+import numpy_demo as np
+from matplotlib.animation import FuncAnimation
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.patches import Ellipse
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+y2 = np.cos(x)
+categories = ['A', 'B', 'C', 'D']
+values = [15, 30, 45, 10]
+data_scatter = np.random.rand(50, 2)
+fig1, axs = plt.subplots(2, 2, figsize=(12, 8))
+fig1.suptitle('Comprehensive 2D Operations', fontsize=16)
+axs[0, 0].plot(x, y, label='Sine', color='blue', linestyle='--', linewidth=2)
+axs[0, 0].plot(x, y2, label='Cosine', color='red', marker='o', markevery=10)
+axs[0, 0].set_title("Line Plot & Styling")
+axs[0, 0].legend(loc='upper right')
+axs[0, 0].grid(True, linestyle=':', alpha=0.6)
+axs[0, 0].set_xlabel("Time")
+axs[0, 0].set_ylabel("Amplitude")
+bars = axs[0, 1].bar(categories, values, color=['#3498db', '#e74c3c', '#2ecc71', '#f1c40f'])
+axs[0, 1].set_title("Bar Chart & Annotations")
+for bar in bars:
+    yval = bar.get_height()
+    axs[0, 1].text(bar.get_x() + bar.get_width()/2, yval + 1, yval, ha='center')
+colors = np.random.rand(50)
+sizes = 1000 * np.random.rand(50)
+scatter = axs[1, 0].scatter(data_scatter[:, 0], data_scatter[:, 1], c=colors, s=sizes, alpha=0.5, cmap='viridis')
+fig1.colorbar(scatter, ax=axs[1, 0], label='Intensity')
+axs[1, 0].set_title("Scatter with Colormap")
+data_hist = np.random.randn(1000)
+axs[1, 1].hist(data_hist, bins=30, color='purple', alpha=0.3, density=True)
+axs[1, 1].fill_between(x - 5, 0, 0.2, color='green', alpha=0.2) 
+axs[1, 1].set_title("Histogram & Area Fill")
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.figure(figsize=(10, 5))
+plt.subplot(1, 2, 1)
+plt.pie(values, labels=categories, autopct='%1.1f%%', explode=[0, 0.1, 0, 0], shadow=True)
+plt.title("Pie Chart (Exploded)")
+plt.subplot(1, 2, 2)
+box_data = [np.random.normal(0, std, 100) for std in range(1, 4)]
+plt.boxplot(box_data, patch_artist=True, labels=['Std 1', 'Std 2', 'Std 3'])
+plt.title("Box Plot (Distribution)")
+fig3 = plt.figure(figsize=(10, 7))
+ax3d = fig3.add_subplot(111, projection='3d')
+X, Y = np.meshgrid(np.arange(-5, 5, 0.25), np.arange(-5, 5, 0.25))
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)
+surf = ax3d.plot_surface(X, Y, Z, cmap='coolwarm', linewidth=0, antialiased=False)
+ax3d.set_title("3D Surface Plot")
+fig3.colorbar(surf, shrink=0.5, aspect=5)
+fig4, ax4 = plt.subplots(figsize=(6, 4))
+img_data = np.random.random((10, 10))
+ax4.imshow(img_data, interpolation='nearest', cmap='hot')
+ax4.annotate('Critical Point', xy=(5, 5), xytext=(7, 2),arrowprops=dict(facecolor='white', shrink=0.05))
+ax4.set_title("Image Display (imshow) & Arrows")
+fig_anim, ax_anim = plt.subplots()
+line, = ax_anim.plot([], [], lw=2)
+ax_anim.set_xlim(0, 2 * np.pi)
+ax_anim.set_ylim(-1.1, 1.1)
+define init():
+    line.set_data([], [])
+    return line,
+define update(frame):
+    x_anim = np.linspace(0, 2 * np.pi, 100)
+    y_anim = np.sin(x_anim + frame / 10)
+    line.set_data(x_anim, y_anim)
+    return line,
+print("Displaying all figures. Close the windows to exit.")
+plt.show()

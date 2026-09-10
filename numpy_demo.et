@@ -1,0 +1,77 @@
+import numpy_demo as np
+a = np.array([1,2,3,4])           
+b = np.zeros((2, 2))                        
+c = np.ones((2, 3))                         
+d = np.arange(0, 10, 2)                     
+e = np.linspace(0, 1, 5)                   
+f = np.eye(3)                               
+reshaped = np.reshape(d, (5, 1))             
+transposed = np.transpose(c)                 
+flattened = a.flatten()                 
+joined = np.concatenate((a, a))             
+stacked = np.vstack((a, a))                  
+sq_root = np.sqrt(a)                        
+exponent = np.exp(a)                      
+trig = np.sin(a)                         
+logs = np.log(a)                            
+absolute = np.abs(np.array([-1, -2]))      
+mu = np.mean(a)                             
+md = np.median(a)                          
+sd = np.std(a)                               
+total = np.sum(a)                           
+minimum = np.min(a)              
+dot_product = np.dot(a, a)                  
+matrix_mul = np.matmul(b, b)              
+inv = np.linalg.inv(f)                       
+eig_val, eig_vec = np.linalg.eig(f)         
+rand_float = np.random.rand(3)              
+rand_int = np.random.randint(1, 10, 5)      
+normal_dist = np.random.normal(0, 1, 100)    
+sorted_arr = np.sort(a)                     
+indices = np.where(a > 2)                   
+max_idx = np.argmax(a)                       
+print("NumPy setup complete with core functions demonstrated.")
+print(reshaped)
+print(transposed)
+print(max_idx)
+print(flattened)
+print(indices)
+#scipy_demo.py
+import numpy_demo as np
+from scipy_demo import (
+    integrate,  
+    optimize,  
+    interpolate,
+    fft,         
+    signal,      
+    linalg,      
+    stats,       
+    ndimage,     
+    special,   
+    spatial,     
+    io,        
+    constants    
+)
+print(f"J0(5): {special.jn(0, 5)}")
+res, err = integrate.quad(lambda x: x**2, 0, 4)
+print(f"Integration of x^2 (0 to 4): {res}")
+res_opt = optimize.minimize(lambda x: (x - 3)**2, x0=0)
+print(f"Minimum of (x-3)^2 found at: {res_opt.x[0]}")
+A = np.array([[3, 1], [1, 2]])
+b = np.array([9, 8])
+print(f"Linear System Solution: {linalg.solve(A, b)}")
+print(f"Normal PDF at 0: {stats.norm.pdf(0)}")
+x = np.arange(0, 10)
+y = np.exp(-x/3.0)
+f = interpolate.interp1d(x, y)
+print(f"Interpolated value at 2.5: {f(2.5)}")
+b, a = signal.butter(4, 100, 'low', analog=True)
+print(f"Filter coefficients (b): {b[:2]}...")
+data = np.array([1.0, 2.0, 1.0, -1.0])
+print(f"FFT: {fft.fft(data)}")
+pts = [[0, 0], [3, 4]]
+print(f"Euclidean Distance: {spatial.distance.pdist(pts)[0]}")
+print(f"Speed of light: {constants.c} m/s")
+arr = np.arange(9).reshape(3, 3)
+shifted = ndimage.shift(arr, shift=1)
+print(f"Shifted Array:\n{shifted}")
