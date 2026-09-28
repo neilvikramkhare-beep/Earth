@@ -1,0 +1,6 @@
+define myFunction(a, b):
+    print(str(a) + "-" + str(b))
+define main():
+    myFunction(78, "xchcb")
+    myFunction(65, "hgfdsd")
+main()
