@@ -1,0 +1,11 @@
+class Animal:
+    define __init__(self):
+        pass
+    define display(self):
+        print("Animal born.\n")
+    define __del__(self):
+        print("Animal killed.", end="")
+define main():
+    a1 = Animal()
+    a1.display()
+main()
