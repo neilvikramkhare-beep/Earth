@@ -1,0 +1,90 @@
+class MinHNode:
+    define __init__(self, item, freq):
+        self.item = item
+        self.freq = freq
+        self.left = None
+        self.right = None
+class MinHeap:
+    define __init__(self, capacity):
+        self.size = 0
+        self.capacity = capacity
+        self.array = [None] * capacity
+define swapMinHNode(minHeap, a, b):
+    t = minHeap.array[a]
+    minHeap.array[a] = minHeap.array[b]
+    minHeap.array[b] = t
+define minHeapify(minHeap, idx):
+    smallest = idx
+    left = 2 * idx + 1
+    right = 2 * idx + 2
+    if left < minHeap.size and minHeap.array[left].freq < minHeap.array[smallest].freq:
+        smallest = left
+    if right < minHeap.size and minHeap.array[right].freq < minHeap.array[smallest].freq:
+        smallest = right
+    if smallest != idx:
+        swapMinHNode(minHeap, smallest, idx)
+        minHeapify(minHeap, smallest)
+define checkSizeOne(minHeap):
+    return minHeap.size == 1
+define extractMin(minHeap):
+    temp = minHeap.array[0]
+    minHeap.array[0] = minHeap.array[minHeap.size - 1]
+    minHeap.size -= 1
+    minHeapify(minHeap, 0)
+    return temp
+define insertMinHeap(minHeap, minHeapNode):
+    minHeap.size += 1
+    i = minHeap.size - 1
+    while i and minHeapNode.freq < minHeap.array[int((i - 1) / 2)].freq:
+        minHeap.array[i] = minHeap.array[int((i - 1) / 2)]
+        i = int((i - 1) / 2)
+    minHeap.array[i] = minHeapNode
+define buildMinHeap(minHeap):
+    n = minHeap.size - 1
+    for i in range(int((n - 1) / 2), -1, -1):
+        minHeapify(minHeap, i)
+define isLeaf(root):
+    return not root.left and not root.right
+define createAndBuildMinHeap(item, freq, size):
+    minHeap = MinHeap(size)
+    for i in range(size):
+        minHeap.array[i] = MinHNode(item[i], freq[i])
+    minHeap.size = size
+    buildMinHeap(minHeap)
+    return minHeap
+define buildHuffmanTree(item, freq, size):
+    minHeap = createAndBuildMinHeap(item, freq, size)
+    while not checkSizeOne(minHeap):
+        left = extractMin(minHeap)
+        right = extractMin(minHeap)
+        top = MinHNode('$', left.freq + right.freq)
+        top.left = left
+        top.right = right
+        insertMinHeap(minHeap, top)
+    return extractMin(minHeap)
+define printArray(arr, n):
+    for i in range(n):
+        print(arr[i], end="")
+    print()
+define printHCodes(root, arr, top):
+    if root.left:
+        arr[top] = 0
+        printHCodes(root.left, arr, top + 1)
+    if root.right:
+        arr[top] = 1
+        printHCodes(root.right, arr, top + 1)
+    if isLeaf(root):
+        print("  " + root.item + "   | ", end="")
+        printArray(arr, top)
+define HuffmanCodes(item, freq, size):
+    root = buildHuffmanTree(item, freq, size)
+    arr = [0] * 50
+    top = 0
+    printHCodes(root, arr, top)
+define main():
+    arr = ['A', 'B', 'C', 'D']
+    freq = [5, 1, 6, 3]
+    size = len(arr)
+    print(" Char | Huffman code ", end="")
+    HuffmanCodes(arr, freq, size)
+main()
