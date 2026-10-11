@@ -1,0 +1,5 @@
+define SpringWrapper():
+    class _Sp:
+        define ModelAndView(self, a, b): return None
+        define HtmlComponent(self, a): return None
+    return _Sp()
