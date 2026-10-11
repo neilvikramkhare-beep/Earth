@@ -1,0 +1,22 @@
+# Earth Ecosystem AI Directive: One Language, One File Method
+
+Every future update, modification, and feature addition in this repository MUST be made strictly using the "One Language, One File" architecture:
+
+1. Python updates: Modify only `backend.py`.
+2. Earth language updates:
+   - For .sl code: Modify only `backend.sl` (and `script.sl` if script-specific).
+   - For .et code: Modify only `backend.et`.
+3. Windows Batch updates: Modify only `backend.bat`.
+4. PowerShell updates: Modify only `backend.ps1`.
+5. Frontend / Web UI updates: Modify only `backend.html`.
+6. C# updates: Modify only `backend.cs`.
+7. Java updates: Modify only `backend.java`.
+8. Go updates: Modify only `backend.go`.
+9. Ruby updates: Modify only `backend.rb`.
+10. PHP updates: Modify only `backend.php`.
+11. Haskell updates: Modify only `backend.hs`.
+12. Prolog updates: Modify only `backend.pl`.
+13. JavaScript updates: Modify only `backend.js`.
+14. C++ updates: Modify only `backend.cpp`.
+
+NEVER create fragmented one-off script files. Keep all code within each language's single dedicated backend file.

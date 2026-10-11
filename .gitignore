@@ -1,0 +1,5 @@
+__earthcache__/
+__pycache__/
+build/
+*.ec
+EarthIDE.spec

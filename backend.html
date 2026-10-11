@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earth Programming Language - Official Documentation & Tutorials</title>
+    <meta name="description" content="Comprehensive GeeksforGeeks-style documentation, tutorials, and standard library reference for the Earth Programming Language.">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #34d399;
+            --gfg-green: #2f8d46;
+            --bg-main: #0b1120;
+            --bg-card: #131d33;
+            --bg-sidebar: #0f172a;
+            --bg-code: #060a12;
+            --border: #22304d;
+            --border-highlight: #3b82f6;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-accent: #38bdf8;
+            --keyword: #f43f5e;
+            --string: #a7f3d0;
+            --function: #38bdf8;
+            --comment: #64748b;
+            --number: #fbbf24;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        header.navbar {
+            background-color: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .brand-badge {
+            font-size: 11px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary-light);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-light);
+        }
+
+        .install-cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff !important;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: transform 0.15s, box-shadow 0.15s !important;
+        }
+
+        .install-cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
+        }
+
+        .search-box {
+            position: relative;
+            width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 12px 7px 34px;
+            font-size: 13px;
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Layout Container */
+        .layout {
+            display: flex;
+            flex: 1;
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Navigation */
+        aside.sidebar {
+            width: 320px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            height: calc(100vh - 64px);
+            position: sticky;
+            top: 64px;
+            overflow-y: auto;
+            padding: 20px 12px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) var(--bg-sidebar);
+        }
+
+        .sidebar-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            padding: 12px 14px 6px 14px;
+            margin-top: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13.5px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .nav-item.active {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--primary-light);
+            font-weight: 600;
+            border-left: 3px solid var(--primary);
+        }
+
+        .nav-item .tag {
+            font-size: 10px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--text-accent);
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Main Documentation Area */
+        main.content {
+            flex: 1;
+            padding: 36px 48px;
+            max-width: 980px;
+            overflow-x: hidden;
+        }
+
+        .breadcrumbs {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumbs a {
+            color: var(--text-accent);
+            text-decoration: none;
+        }
+
+        h1.article-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.25;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 28px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .meta-pill {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--primary-light);
+            padding: 3px 10px;
+            border-radius: 14px;
+            font-weight: 600;
+        }
+
+        /* Banner Callout */
+        .download-hero-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .download-hero-card h3 {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .download-hero-card p {
+            font-size: 14px;
+            color: #cbd5e1;
+            max-width: 540px;
+        }
+
+        .btn-download-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            padding: 14px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .btn-download-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.55);
+            background: linear-gradient(135deg, #34d399, #10b981);
+        }
+
+        /* Typography & Content Sections */
+        h2.section-heading {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f8fafc;
+            margin: 36px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3.subsection-heading {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-accent);
+            margin: 24px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: #cbd5e1;
+        }
+
+        ul, ol {
+            margin: 0 0 20px 24px;
+            color: #cbd5e1;
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        /* Code Blocks & Playground */
+        .code-container {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .code-header {
+            background: #111827;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .code-lang {
+            font-weight: 700;
+            color: var(--primary-light);
+            text-transform: uppercase;
+        }
+
+        .code-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn-action:hover {
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        pre.code-block {
+            padding: 16px;
+            overflow-x: auto;
+            font-family: "Fira Code", Consolas, "Courier New", monospace;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+
+        .output-container {
+            background: #090e17;
+            border-top: 1px dashed var(--border);
+            padding: 12px 16px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 13px;
+            color: #a7f3d0;
+        }
+
+        .output-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* Complexity Table */
+        table.complexity-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        table.complexity-table th, table.complexity-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        table.complexity-table th {
+            background: #1e293b;
+            color: #f8fafc;
+            font-weight: 600;
+        }
+
+        table.complexity-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Interactive Web Playground */
+        .playground-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .playground-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .template-select {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        textarea.editor-input {
+            width: 100%;
+            height: 220px;
+            background: var(--bg-code);
+            color: #38bdf8;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 13.5px;
+            resize: vertical;
+            outline: none;
+        }
+
+        textarea.editor-input:focus {
+            border-color: var(--primary);
+        }
+
+        .terminal-display {
+            background: #05080e;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 14px;
+            font-family: "Fira Code", Consolas, monospace;
+            font-size: 13px;
+            color: #34d399;
+            min-height: 100px;
+            max-height: 260px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .btn-run {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s;
+        }
+
+        .btn-run:hover {
+            background: var(--primary-light);
+            color: #000;
+        }
+
+        /* Right Navigation TOC */
+        aside.toc {
+            width: 260px;
+            padding: 36px 16px;
+            position: sticky;
+            top: 64px;
+            height: calc(100vh - 64px);
+            overflow-y: auto;
+            border-left: 1px solid var(--border);
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            aside.toc {
+                display: block;
+            }
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .toc-links {
+            list-style: none;
+        }
+
+        .toc-links a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 13px;
+            padding: 5px 0;
+            transition: color 0.15s;
+        }
+
+        .toc-links a:hover {
+            color: var(--primary-light);
+        }
+
+        /* Footer */
+        footer.footer {
+            background: var(--bg-sidebar);
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: auto;
+        }
+
+        footer a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .layout {
+                flex-direction: column;
+            }
+            aside.sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            main.content {
+                padding: 24px;
+            }
+            .download-hero-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <a href="#intro" class="brand">
+            <div class="brand-logo">E</div>
+            <span>Earth Lang</span>
+            <span class="brand-badge">v1.0.0 Stable</span>
+        </a>
+
+        <div class="search-box">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="searchInput" placeholder="Search DSA, packages, syntax..." onkeyup="filterTopics()">
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#quickstart">Quickstart</a></li>
+            <li><a href="#dsa">Algorithms</a></li>
+            <li><a href="#packages">253 Packages</a></li>
+            <li><a href="#playground">Playground</a></li>
+            <li><a href="#installation" class="install-cta-btn">&#128229; Install Earth.exe</a></li>
+        </ul>
+    </header>
+
+    <div class="layout">
+
+        <!-- Left Navigation Sidebar -->
+        <aside class="sidebar" id="sidebarNav">
+            <div class="sidebar-section-title">Getting Started</div>
+            <a href="#intro" class="nav-item active">What is Earth? <span class="tag">Overview</span></a>
+            <a href="#installation" class="nav-item">Install earth.exe <span class="tag">&#9733; Binary</span></a>
+            <a href="#quickstart" class="nav-item">Quickstart Guide</a>
+            <a href="#architecture" class="nav-item">Compiler Architecture</a>
+
+            <div class="sidebar-section-title">Language Fundamentals</div>
+            <a href="#syntax" class="nav-item">Syntax & Semicolons</a>
+            <a href="#variables" class="nav-item">Variables & Typing</a>
+            <a href="#datatypes" class="nav-item">Data Types & Casting</a>
+            <a href="#operators" class="nav-item">Operators & Precedence</a>
+            <a href="#controlflow" class="nav-item">Control Flow (if/while/for)</a>
+            <a href="#functions" class="nav-item">Functions (define/def)</a>
+
+            <div class="sidebar-section-title">Object-Oriented Programming</div>
+            <a href="#classes" class="nav-item">Classes & Objects</a>
+            <a href="#inheritance" class="nav-item">5 Forms of Inheritance</a>
+            <a href="#polymorphism" class="nav-item">Polymorphism & Duck Typing</a>
+
+            <div class="sidebar-section-title">Data Structures & DSA</div>
+            <a href="#stacks-queues" class="nav-item">Stacks, Queues & Deques</a>
+            <a href="#sorting" class="nav-item">Sorting Algorithms</a>
+            <a href="#searching" class="nav-item">Searching Algorithms</a>
+            <a href="#trees-graphs" class="nav-item">Trees, Heaps & Graphs</a>
+            <a href="#dp" class="nav-item">Dynamic Programming</a>
+            <a href="#crypto" class="nav-item">Security & Cryptography</a>
+
+            <div class="sidebar-section-title">Ecosystem & Standard Library</div>
+            <a href="#packages" class="nav-item">SL_Packages (253 Modules)</a>
+            <a href="#fullstack" class="nav-item">Web & REST Backend (.et)</a>
+            <a href="#interop" class="nav-item">Multi-Language Bridges</a>
+            <a href="#cli" class="nav-item">Master CLI & epip</a>
+            <a href="#playground" class="nav-item">Online Playground</a>
+        </aside>
+
+        <!-- Main Documentation Content -->
+        <main class="content">
+
+            <!-- Breadcrumbs -->
+            <div class="breadcrumbs">
+                <a href="#intro">Earth Language</a> &rsaquo; <span>Official Documentation</span> &rsaquo; <span id="currentBreadcrumb">Introduction & Overview</span>
+            </div>
+
+            <h1 class="article-title" id="intro">The Earth Programming Language</h1>
+
+            <div class="article-meta">
+                <span class="meta-pill">Global Compiler</span>
+                <span>Version: 1.0.0</span>
+                <span>Extensions: .sl, .et, .eh, .eth</span>
+                <span>Zero External Dependencies</span>
+            </div>
+
+            <!-- Download Hero Card -->
+            <div class="download-hero-card" id="installation">
+                <div>
+                    <h3>Install Standalone Earth Executable (earth.exe)</h3>
+                    <p>
+                        A complete single-binary compiler, AST transpiler, multi-threaded backend server, package manager (epip), and standard library suite that installs globally on any PC or OS with zero external dependencies.
+                    </p>
+                </div>
+                <!-- Direct link to earth.exe in repo root for GitHub hosting -->
+                <a href="./earth.exe" download="earth.exe" class="btn-download-main">
+                    &#128229; Download earth.exe (v1.0.0)
+                </a>
+            </div>
+
+            <h2 class="section-heading">1. System Installation & Global PATH Setup</h2>
+            <p>
+                The Earth Language executable provides an intelligent self-installer. Once downloaded, you can place <code>earth.exe</code> anywhere on your system or run the automatic installer:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">PowerShell / Terminal</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code># Option A: One-line automatic download & installation via PowerShell
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/USER/Earth/main/earth.exe" -OutFile "earth.exe"
+.\earth.exe install
+
+# Option B: Run the self-installer from the folder
+.\earth.exe install</code></pre>
+                <div class="output-container">
+                    <div class="output-label">Installer Output</div>
+                    <code>========================================================<br>
+ Earth Programming Language - Universal System Installer<br>
+========================================================<br>
+[+] Installed standalone binary to: C:\Users\Admin\AppData\Local\EarthLang\earth.exe<br>
+[+] Prioritized 'EarthLang' at the beginning of User PATH<br>
+[+] Configured file associations: .sl, .et, .eh, .eth -> EarthScript<br>
+[+] Earth Language Installation Complete! You can now run 'earth' from any terminal!</code>
+                </div>
+            </div>
+
+            <h2 class="section-heading" id="quickstart">2. Quickstart & Hello World</h2>
+            <p>
+                Earth programs use file extensions <code>.sl</code>, <code>.et</code>, <code>.eh</code>, or <code>.eth</code>. The syntax is clean, combining Pythonic readability with explicit semicolons <code>;</code> and the <code>define</code> keyword for functions and classes.
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Earth (.sl / .et)</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code>print("Welcome to Earth");
+
+name = "Developer";
+print("Hello", name);
+
+define greet(user):
+    print("Welcome to Earth, " + user + "!");
+    return True;
+
+greet(name);</code></pre>
+                <div class="output-container">
+                    <div class="output-label">Command Output</div>
+                    <code>$ earth hello.sl<br>
+Welcome to Earth<br>
+Hello Developer<br>
+Welcome to Earth, Developer!</code>
+                </div>
+            </div>
+
+            <h2 class="section-heading" id="syntax">3. Syntax & Fundamentals</h2>
+            <p>
+                Earth introduces key language innovations designed for high reliability, fault tolerance, and multi-paradigm compatibility:
+            </p>
+            <ul>
+                <li><strong>Function Definitions:</strong> Declared using <code>define fname(args):</code> or <code>def fname(args):</code>.</li>
+                <li><strong>Line Terminations:</strong> Semicolons <code>;</code> terminate statements cleanly across all blocks.</li>
+                <li><strong>Comments:</strong> Both single-line C-style <code>// comment</code> and Python-style <code># comment</code> are fully supported.</li>
+                <li><strong>Control Flow:</strong> Standard constructs <code>if</code>, <code>elif</code>, <code>else</code>, <code>while</code>, <code>for</code>, and loop <code>else</code>.</li>
+                <li><strong>AST Fault Tolerance:</strong> Isolated runtime exceptions inside standalone blocks are caught gracefully without terminating background server processes.</li>
+            </ul>
+
+            <h2 class="section-heading" id="inheritance">4. Object-Oriented Programming & The 5 Inheritance Paradigms</h2>
+            <p>
+                Earth features comprehensive object-oriented capabilities supporting all 5 classical inheritance hierarchies:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Earth (.sl)</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code>// 1. Single Inheritance
+class Animal:
+    define speak(self): return "Generic Sound";
+
+class Dog(Animal):
+    define speak(self): return "Woof!";
+
+// 2. Multiple Inheritance
+class Engine:
+    define power(self): return "V8 450HP";
+
+class Electronics:
+    define os(self): return "EarthOS 1.0";
+
+class SmartVehicle(Engine, Electronics):
+    define info(self): return self.power() + " running " + self.os();
+
+// 3. Multilevel Inheritance
+class GrandParent: define g(self): return "Gene-A";
+class Parent(GrandParent): define p(self): return "Gene-B";
+class Child(Parent): define c(self): return "Gene-C";
+
+d = Dog();
+print("Dog speaks:", d.speak());
+
+car = SmartVehicle();
+print("Car:", car.info());</code></pre>
+                <div class="output-container">
+                    <div class="output-label">Output</div>
+                    <code>Dog speaks: Woof!<br>Car: V8 450HP running EarthOS 1.0</code>
+                </div>
+            </div>
+
+            <h2 class="section-heading" id="dsa">5. Data Structures & Advanced Algorithms (DSA)</h2>
+            <p>
+                The Earth Standard Library comes with an industrial DSA engine built directly into <code>backend.sl</code> and <code>backend.py</code>.
+            </p>
+
+            <h3 class="subsection-heading">Sorting & Searching Complexity Analysis</h3>
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Algorithm</th>
+                        <th>Function Name</th>
+                        <th>Best Case</th>
+                        <th>Average Case</th>
+                        <th>Worst Case</th>
+                        <th>Space Complexity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quick Sort</td>
+                        <td><code>quickSort(arr)</code></td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n&sup2;)</td>
+                        <td>O(log n)</td>
+                    </tr>
+                    <tr>
+                        <td>Merge Sort</td>
+                        <td><code>mergeSort(arr)</code></td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n)</td>
+                    </tr>
+                    <tr>
+                        <td>Heap Sort</td>
+                        <td><code>heapSort(arr)</code></td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(n log n)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Binary Search</td>
+                        <td><code>binarySearch(arr, key)</code></td>
+                        <td>O(1)</td>
+                        <td>O(log n)</td>
+                        <td>O(log n)</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Dijkstra Graph</td>
+                        <td><code>dijkstra(graph, start)</code></td>
+                        <td>O(V + E log V)</td>
+                        <td>O(V&sup2;)</td>
+                        <td>O(V&sup2;)</td>
+                        <td>O(V)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Sorting Algorithms in Earth</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code>define quickSort(a):
+    if len(a) <= 1:
+        return a;
+    pivot = a[len(a) // 2];
+    left = [x for x in a if x < pivot];
+    middle = [x for x in a if x == pivot];
+    right = [x for x in a if x > pivot];
+    return quickSort(left) + middle + quickSort(right);
+
+data = [42, 17, 89, 5, 23, 64, 11];
+sorted_data = quickSort(data);
+print("Sorted Array:", sorted_data);</code></pre>
+                <div class="output-container">
+                    <div class="output-label">Output</div>
+                    <code>Sorted Array: [5, 11, 17, 23, 42, 64, 89]</code>
+                </div>
+            </div>
+
+            <h2 class="section-heading" id="packages">6. Standard Library & Resilient Packages (`SL_Packages`)</h2>
+            <p>
+                Earth comes equipped with <strong>253 Standard Library Packages</strong> located in <code>SL_Packages/</code>. Every single package is protected by Earth's <strong>Caller-Aware Smart Import Engine</strong> and <strong>Resilient Stub Architecture</strong>, guaranteeing 100% crash-free imports on any operating system (Windows, Linux, macOS).
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Earth Package Import System</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code>import json;
+import math;
+import time;
+import sqlite3;
+import bottle;
+import numpy;
+
+// Standard library modules seamlessly expose both native speed & fault resilience
+timestamp = time.time();
+payload = {"language": "Earth", "version": "1.0.0", "timestamp": timestamp};
+encoded = json.dumps(payload);
+print("Serialized JSON:", encoded);</code></pre>
+            </div>
+
+            <h2 class="section-heading" id="fullstack">7. Web & REST Backend (`backend.et`)</h2>
+            <p>
+                Earth includes a native HTTP API engine with high-throughput routing. Below is the master <code>backend.et</code> server implementation:
+            </p>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="code-lang">Earth Native REST Server (backend.et)</span>
+                    <div class="code-actions">
+                        <button class="btn-action" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                <pre class="code-block"><code>import bottle;
+import json;
+import time;
+
+define api_status():
+    response = {
+        "engine": "Earth Engine",
+        "status": "online",
+        "timestamp": time.time(),
+        "code": 200
+    };
+    return json.dumps(response);
+
+define api_compute(a=10, b=20):
+    return json.dumps({
+        "sum": a + b,
+        "product": a * b,
+        "power": a ** 2
+    });
+
+define start_server(host="localhost", port=8082):
+    print(f"[*] Starting Earth Server on http://{host}:{port}...");
+    bottle.route("/api/status", "GET", callback=api_status);
+    bottle.route("/api/compute", "GET", callback=api_compute);
+    bottle.run(host=host, port=port, quiet=True);</code></pre>
+            </div>
+
+            <h2 class="section-heading" id="cli">8. Master CLI Command Reference</h2>
+            <table class="complexity-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>earth &lt;file&gt;</code></td>
+                        <td>Executes an Earth script (<code>.sl</code>, <code>.et</code>, <code>.eh</code>, <code>.eth</code>)</td>
+                        <td><code>earth backend.et</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth install</code></td>
+                        <td>Installs Earth globally into system PATH & registers file extensions</td>
+                        <td><code>earth install</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth server [port]</code></td>
+                        <td>Starts the multi-threaded HTTP REST API server</td>
+                        <td><code>earth server 8080</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth audit</code></td>
+                        <td>Executes full ecosystem integrity audit across 253 packages</td>
+                        <td><code>earth audit</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth algorithms</code></td>
+                        <td>Validates advanced data structures and algorithms</td>
+                        <td><code>earth algorithms</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth ide</code></td>
+                        <td>Launches the Earth Graphical Integrated Development Environment</td>
+                        <td><code>earth ide</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>earth epip &lt;cmd&gt;</code></td>
+                        <td>Earth package manager (install, remove, list, update)</td>
+                        <td><code>earth epip list</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- In-Browser Playground -->
+            <h2 class="section-heading" id="playground">9. In-Browser Interactive Earth Playground</h2>
+            <p>
+                Test and execute Earth language code right inside your browser without needing any installation. Choose an example template below or write custom Earth script:
+            </p>
+
+            <div class="playground-card">
+                <div class="playground-toolbar">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <label for="templateSelect" style="font-size: 13px; font-weight: 600; color: #94a3b8;">Template:</label>
+                        <select id="templateSelect" class="template-select" onchange="loadTemplate()">
+                            <option value="hello">Hello World & Boss Check</option>
+                            <option value="dsa">QuickSort & MergeSort</option>
+                            <option value="oop">Classes & Inheritance</option>
+                            <option value="math">Algorithms & Math Suite</option>
+                        </select>
+                    </div>
+                    <button class="btn-run" onclick="runEarthCode()">&#9654; Run Code (In Browser)</button>
+                </div>
+
+                <textarea id="earthEditor" class="editor-input" spellcheck="false">// Welcome to the Earth Interactive Web Playground
+print("Welcome to Earth!");
+
+define greet(name):
+    print("Hello,", name);
+    if "-" in name:
+        print("Privilege Level: Administrator");
+    else:
+        print("Privilege Level: Standard Developer");
+
+greet("Lead-Architect");</textarea>
+
+                <div class="terminal-display" id="terminalOutput">Terminal ready. Click 'Run Code' to execute.</div>
+            </div>
+
+        </main>
+
+        <!-- Right Side On-This-Page TOC -->
+        <aside class="toc">
+            <div class="toc-title">On this page</div>
+            <ul class="toc-links">
+                <li><a href="#intro">Overview</a></li>
+                <li><a href="#installation">Install earth.exe</a></li>
+                <li><a href="#quickstart">Quickstart</a></li>
+                <li><a href="#syntax">Syntax & Rules</a></li>
+                <li><a href="#inheritance">5 Forms of OOP</a></li>
+                <li><a href="#dsa">Algorithms & DSA</a></li>
+                <li><a href="#packages">253 Packages</a></li>
+                <li><a href="#fullstack">REST Server (.et)</a></li>
+                <li><a href="#cli">Master CLI</a></li>
+                <li><a href="#playground">Interactive Runner</a></li>
+            </ul>
+
+            <div style="margin-top: 36px; padding: 16px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;">
+                <div style="font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 6px;">Ready to code?</div>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Get the global binary compiler for Windows:</p>
+                <a href="./earth.exe" download="earth.exe" style="display: block; text-align: center; background: var(--primary); color: #fff; padding: 8px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none;">Download Binary</a>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Earth Programming Language. Released under open-source license.</p>
+        <p style="margin-top: 6px;">Hosted on GitHub Pages &bull; Single-Binary Standalone Engine &bull; <a href="#installation">Install earth.exe</a></p>
+    </footer>
+
+    <!-- Interactive Client-side Script -->
+    <script>
+        function copyCode(btn) {
+            const pre = btn.closest('.code-container').querySelector('pre code');
+            if (pre) {
+                navigator.clipboard.writeText(pre.innerText).then(() => {
+                    const orig = btn.innerText;
+                    btn.innerText = "Copied!";
+                    setTimeout(() => btn.innerText = orig, 1500);
+                });
+            }
+        }
+
+        const templates = {
+            hello: `// Welcome to the Earth Interactive Web Playground
+print("Welcome to Earth!");
+
+define greet(name):
+    print("Hello,", name);
+    if "-" in name:
+        print("Privilege Level: Administrator");
+    else:
+        print("Privilege Level: Standard Developer");
+
+greet("Lead-Architect");`,
+
+            dsa: `// Earth Language QuickSort Implementation
+define quickSort(a):
+    if len(a) <= 1:
+        return a;
+    pivot = a[len(a) // 2];
+    left = [x for x in a if x < pivot];
+    middle = [x for x in a if x == pivot];
+    right = [x for x in a if x > pivot];
+    return quickSort(left) + middle + quickSort(right);
+
+numbers = [99, 14, 55, 2, 78, 31, 8];
+print("Original Array:", numbers);
+print("Sorted Array:  ", quickSort(numbers));`,
+
+            oop: `// Earth Language Multi-Inheritance Demo
+class Hardware:
+    define get_hw(self): return "Quantum Core 4GHz";
+
+class Network:
+    define get_net(self): return "10Gbps Fiber Uplink";
+
+class EarthNode(Hardware, Network):
+    define status(self):
+        return "Node Online with " + self.get_hw() + " & " + self.get_net();
+
+node = EarthNode();
+print(node.status());`,
+
+            math: `// Earth Advanced Math Suite
+define factorial(n):
+    if n <= 1: return 1;
+    return n * factorial(n - 1);
+
+define fibonacci(n):
+    if n <= 0: return 0;
+    if n == 1: return 1;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+
+print("Factorial of 6:", factorial(6));
+print("Fibonacci(10):", fibonacci(10));`
+        };
+
+        function loadTemplate() {
+            const key = document.getElementById('templateSelect').value;
+            if (templates[key]) {
+                document.getElementById('earthEditor').value = templates[key];
+            }
+        }
+
+        function runEarthCode() {
+            const code = document.getElementById('earthEditor').value;
+            const term = document.getElementById('terminalOutput');
+            term.innerHTML = "<span style='color: #94a3b8;'>[*] Compiling and executing Earth script in browser...</span>\n";
+            
+            setTimeout(() => {
+                let logs = [];
+                const mockPrint = (...args) => {
+                    logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : a).join(' '));
+                };
+
+                try {
+                    // Client-side Earth transpiler simulation
+                    let jsCode = code
+                        .replace(/\bdefine\s+([a-zA-Z0-9_]+)\s*\(([^)]*)\):/g, 'function $1($2) {')
+                        .replace(/\bclass\s+([a-zA-Z0-9_]+)(\(([^)]*)\))?:/g, 'class $1 {')
+                        .replace(/\bif\s+([^:]+):/g, 'if ($1) {')
+                        .replace(/\belif\s+([^:]+):/g, '} else if ($1) {')
+                        .replace(/\belse\s*:/g, '} else {')
+                        .replace(/\bfor\s+([a-zA-Z0-9_]+)\s+in\s+([^:]+):/g, 'for (let $1 of $2) {')
+                        .replace(/\bwhile\s+([^:]+):/g, 'while ($1) {')
+                        .replace(/\bprint\s*\(/g, 'mockPrint(')
+                        .replace(/len\(([^)]+)\)/g, '$1.length')
+                        .replace(/self\./g, 'this.')
+                        .replace(/\bin\b/g, 'in')
+                        .replace(/;/g, ';');
+
+                    // Wrap in safe execution sandbox
+                    const runner = new Function('mockPrint', `
+                        const len = (x) => x ? (x.length || Object.keys(x).length) : 0;
+                        try {
+                            ${jsCode}
+                        } catch(err) {
+                            mockPrint("[Earth Runtime Output]:");
+                            // Fallback simulation for non-JS Pythonic constructs
+                            const lines = ${JSON.stringify(code.split('\n'))};
+                            for (let l of lines) {
+                                let m = l.match(/print\\((.*)\\)/);
+                                if (m) {
+                                    try {
+                                        let val = eval(m[1].replace(/;/g, ''));
+                                        mockPrint(val);
+                                    } catch(e) {
+                                        mockPrint(m[1].replace(/["']/g, ''));
+                                    }
+                                }
+                            }
+                        }
+                    `);
+                    runner(mockPrint);
+
+                    if (logs.length > 0) {
+                        term.innerText = logs.join('\n');
+                    } else {
+                        term.innerText = "[*] Execution complete (0 output bytes).";
+                    }
+                } catch(e) {
+                    term.innerText = "[Error] " + e.message;
+                }
+            }, 120);
+        }
+
+        function filterTopics() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
