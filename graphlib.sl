@@ -1,17 +1,8 @@
-// SL Package definition for graphlib
-package graphlib;
+// Earth Language Explicit Wrapper for graphlib
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('graphlib')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('graphlib.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'graphlib' has no attribute '" + name + "'")
+py_graphlib = __import__('graphlib')
 
-
-
-define init():
-    pass
+CycleError = getattr(py_graphlib, 'CycleError', None);
+GenericAlias = getattr(py_graphlib, 'GenericAlias', None);
+TopologicalSorter = getattr(py_graphlib, 'TopologicalSorter', None);

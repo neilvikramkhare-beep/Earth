@@ -1,17 +1,7 @@
-// SL Package definition for fcntl
-package fcntl;
+// Earth Language Wrapper for fcntl
+// Automatically generated
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('fcntl')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('fcntl.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'fcntl' has no attribute '" + name + "'")
+py_fcntl = __import__('fcntl')
 
-
-
-define init():
-    pass
+define get_native_module():
+    return py_fcntl;

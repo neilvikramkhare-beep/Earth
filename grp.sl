@@ -1,17 +1,7 @@
-// SL Package definition for grp
-package grp;
+// Earth Language Wrapper for grp
+// Automatically generated
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('grp')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('grp.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'grp' has no attribute '" + name + "'")
+py_grp = __import__('grp')
 
-
-
-define init():
-    pass
+define get_native_module():
+    return py_grp;

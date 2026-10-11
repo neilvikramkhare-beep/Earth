@@ -1,0 +1,5 @@
+define JavaEEWrapper():
+    class _Jee:
+        define JSPRenderer(self, a): return None
+        define JSFComponent(self, a): return None
+    return _Jee()

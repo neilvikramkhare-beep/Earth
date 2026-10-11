@@ -1,17 +1,6 @@
-// SL Package definition for idlelib
-package idlelib;
+// Earth Language Explicit Wrapper for idlelib
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('idlelib')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('idlelib.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'idlelib' has no attribute '" + name + "'")
+py_idlelib = __import__('idlelib')
 
-
-
-define init():
-    pass
+testing = getattr(py_idlelib, 'testing', None);

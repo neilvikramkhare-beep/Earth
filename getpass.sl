@@ -1,17 +1,26 @@
-// SL Package definition for getpass
-package getpass;
+// Earth Language Explicit Wrapper for getpass
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('getpass')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('getpass.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'getpass' has no attribute '" + name + "'")
+py_getpass = __import__('getpass')
 
+GetPassWarning = getattr(py_getpass, 'GetPassWarning', None);
+contextlib = getattr(py_getpass, 'contextlib', None);
+define fallback_getpass(*args, **kwargs):
+    return py_getpass.fallback_getpass(*args, **kwargs);
 
+define getpass(*args, **kwargs):
+    return py_getpass.getpass(*args, **kwargs);
 
-define init():
-    pass
+define getuser(*args, **kwargs):
+    return py_getpass.getuser(*args, **kwargs);
+
+io = getattr(py_getpass, 'io', None);
+msvcrt = getattr(py_getpass, 'msvcrt', None);
+os = getattr(py_getpass, 'os', None);
+sys = getattr(py_getpass, 'sys', None);
+define unix_getpass(*args, **kwargs):
+    return py_getpass.unix_getpass(*args, **kwargs);
+
+define win_getpass(*args, **kwargs):
+    return py_getpass.win_getpass(*args, **kwargs);
+

@@ -1,17 +1,28 @@
-// SL Package definition for fastapi
-package fastapi;
+// Earth Language FastAPI-like Framework Wrapper
+// File: fastapi.sl
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('fastapi')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('fastapi.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'fastapi' has no attribute '" + name + "'")
+import bottle as std_bottle
+import json as std_json
 
+class FastAPI:
+    define __init__(self):
+        self.app = std_bottle.Bottle();
+        
+    define get(self, path):
+        define decorator(callback):
+            self.app.route(path, method="GET", callback=callback);
+            return callback;
+        return decorator;
+        
+    define post(self, path):
+        define decorator(callback):
+            self.app.route(path, method="POST", callback=callback);
+            return callback;
+        return decorator;
+        
+    define run(self, host="localhost", port=8000):
+        print("Starting Earth FastAPI server on " + host + ":" + str(port));
+        std_bottle.run(self.app, host=host, port=port, quiet=True);
 
-
-define init():
-    pass
+define create_app():
+    return FastAPI();

@@ -1,17 +1,142 @@
-// SL Package definition for errno
-package errno;
+// Earth Language Explicit Wrapper for errno
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('errno')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('errno.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'errno' has no attribute '" + name + "'")
+py_errno = __import__('errno')
 
-
-
-define init():
-    pass
+E2BIG = getattr(py_errno, 'E2BIG', None);
+EACCES = getattr(py_errno, 'EACCES', None);
+EADDRINUSE = getattr(py_errno, 'EADDRINUSE', None);
+EADDRNOTAVAIL = getattr(py_errno, 'EADDRNOTAVAIL', None);
+EAFNOSUPPORT = getattr(py_errno, 'EAFNOSUPPORT', None);
+EAGAIN = getattr(py_errno, 'EAGAIN', None);
+EALREADY = getattr(py_errno, 'EALREADY', None);
+EBADF = getattr(py_errno, 'EBADF', None);
+EBADMSG = getattr(py_errno, 'EBADMSG', None);
+EBUSY = getattr(py_errno, 'EBUSY', None);
+ECANCELED = getattr(py_errno, 'ECANCELED', None);
+ECHILD = getattr(py_errno, 'ECHILD', None);
+ECONNABORTED = getattr(py_errno, 'ECONNABORTED', None);
+ECONNREFUSED = getattr(py_errno, 'ECONNREFUSED', None);
+ECONNRESET = getattr(py_errno, 'ECONNRESET', None);
+EDEADLK = getattr(py_errno, 'EDEADLK', None);
+EDEADLOCK = getattr(py_errno, 'EDEADLOCK', None);
+EDESTADDRREQ = getattr(py_errno, 'EDESTADDRREQ', None);
+EDOM = getattr(py_errno, 'EDOM', None);
+EDQUOT = getattr(py_errno, 'EDQUOT', None);
+EEXIST = getattr(py_errno, 'EEXIST', None);
+EFAULT = getattr(py_errno, 'EFAULT', None);
+EFBIG = getattr(py_errno, 'EFBIG', None);
+EHOSTDOWN = getattr(py_errno, 'EHOSTDOWN', None);
+EHOSTUNREACH = getattr(py_errno, 'EHOSTUNREACH', None);
+EIDRM = getattr(py_errno, 'EIDRM', None);
+EILSEQ = getattr(py_errno, 'EILSEQ', None);
+EINPROGRESS = getattr(py_errno, 'EINPROGRESS', None);
+EINTR = getattr(py_errno, 'EINTR', None);
+EINVAL = getattr(py_errno, 'EINVAL', None);
+EIO = getattr(py_errno, 'EIO', None);
+EISCONN = getattr(py_errno, 'EISCONN', None);
+EISDIR = getattr(py_errno, 'EISDIR', None);
+ELOOP = getattr(py_errno, 'ELOOP', None);
+EMFILE = getattr(py_errno, 'EMFILE', None);
+EMLINK = getattr(py_errno, 'EMLINK', None);
+EMSGSIZE = getattr(py_errno, 'EMSGSIZE', None);
+ENAMETOOLONG = getattr(py_errno, 'ENAMETOOLONG', None);
+ENETDOWN = getattr(py_errno, 'ENETDOWN', None);
+ENETRESET = getattr(py_errno, 'ENETRESET', None);
+ENETUNREACH = getattr(py_errno, 'ENETUNREACH', None);
+ENFILE = getattr(py_errno, 'ENFILE', None);
+ENOBUFS = getattr(py_errno, 'ENOBUFS', None);
+ENODATA = getattr(py_errno, 'ENODATA', None);
+ENODEV = getattr(py_errno, 'ENODEV', None);
+ENOENT = getattr(py_errno, 'ENOENT', None);
+ENOEXEC = getattr(py_errno, 'ENOEXEC', None);
+ENOLCK = getattr(py_errno, 'ENOLCK', None);
+ENOLINK = getattr(py_errno, 'ENOLINK', None);
+ENOMEM = getattr(py_errno, 'ENOMEM', None);
+ENOMSG = getattr(py_errno, 'ENOMSG', None);
+ENOPROTOOPT = getattr(py_errno, 'ENOPROTOOPT', None);
+ENOSPC = getattr(py_errno, 'ENOSPC', None);
+ENOSR = getattr(py_errno, 'ENOSR', None);
+ENOSTR = getattr(py_errno, 'ENOSTR', None);
+ENOSYS = getattr(py_errno, 'ENOSYS', None);
+ENOTCONN = getattr(py_errno, 'ENOTCONN', None);
+ENOTDIR = getattr(py_errno, 'ENOTDIR', None);
+ENOTEMPTY = getattr(py_errno, 'ENOTEMPTY', None);
+ENOTRECOVERABLE = getattr(py_errno, 'ENOTRECOVERABLE', None);
+ENOTSOCK = getattr(py_errno, 'ENOTSOCK', None);
+ENOTSUP = getattr(py_errno, 'ENOTSUP', None);
+ENOTTY = getattr(py_errno, 'ENOTTY', None);
+ENXIO = getattr(py_errno, 'ENXIO', None);
+EOPNOTSUPP = getattr(py_errno, 'EOPNOTSUPP', None);
+EOVERFLOW = getattr(py_errno, 'EOVERFLOW', None);
+EOWNERDEAD = getattr(py_errno, 'EOWNERDEAD', None);
+EPERM = getattr(py_errno, 'EPERM', None);
+EPFNOSUPPORT = getattr(py_errno, 'EPFNOSUPPORT', None);
+EPIPE = getattr(py_errno, 'EPIPE', None);
+EPROTO = getattr(py_errno, 'EPROTO', None);
+EPROTONOSUPPORT = getattr(py_errno, 'EPROTONOSUPPORT', None);
+EPROTOTYPE = getattr(py_errno, 'EPROTOTYPE', None);
+ERANGE = getattr(py_errno, 'ERANGE', None);
+EREMOTE = getattr(py_errno, 'EREMOTE', None);
+EROFS = getattr(py_errno, 'EROFS', None);
+ESHUTDOWN = getattr(py_errno, 'ESHUTDOWN', None);
+ESOCKTNOSUPPORT = getattr(py_errno, 'ESOCKTNOSUPPORT', None);
+ESPIPE = getattr(py_errno, 'ESPIPE', None);
+ESRCH = getattr(py_errno, 'ESRCH', None);
+ESTALE = getattr(py_errno, 'ESTALE', None);
+ETIME = getattr(py_errno, 'ETIME', None);
+ETIMEDOUT = getattr(py_errno, 'ETIMEDOUT', None);
+ETOOMANYREFS = getattr(py_errno, 'ETOOMANYREFS', None);
+ETXTBSY = getattr(py_errno, 'ETXTBSY', None);
+EUSERS = getattr(py_errno, 'EUSERS', None);
+EWOULDBLOCK = getattr(py_errno, 'EWOULDBLOCK', None);
+EXDEV = getattr(py_errno, 'EXDEV', None);
+WSABASEERR = getattr(py_errno, 'WSABASEERR', None);
+WSAEACCES = getattr(py_errno, 'WSAEACCES', None);
+WSAEADDRINUSE = getattr(py_errno, 'WSAEADDRINUSE', None);
+WSAEADDRNOTAVAIL = getattr(py_errno, 'WSAEADDRNOTAVAIL', None);
+WSAEAFNOSUPPORT = getattr(py_errno, 'WSAEAFNOSUPPORT', None);
+WSAEALREADY = getattr(py_errno, 'WSAEALREADY', None);
+WSAEBADF = getattr(py_errno, 'WSAEBADF', None);
+WSAECONNABORTED = getattr(py_errno, 'WSAECONNABORTED', None);
+WSAECONNREFUSED = getattr(py_errno, 'WSAECONNREFUSED', None);
+WSAECONNRESET = getattr(py_errno, 'WSAECONNRESET', None);
+WSAEDESTADDRREQ = getattr(py_errno, 'WSAEDESTADDRREQ', None);
+WSAEDISCON = getattr(py_errno, 'WSAEDISCON', None);
+WSAEDQUOT = getattr(py_errno, 'WSAEDQUOT', None);
+WSAEFAULT = getattr(py_errno, 'WSAEFAULT', None);
+WSAEHOSTDOWN = getattr(py_errno, 'WSAEHOSTDOWN', None);
+WSAEHOSTUNREACH = getattr(py_errno, 'WSAEHOSTUNREACH', None);
+WSAEINPROGRESS = getattr(py_errno, 'WSAEINPROGRESS', None);
+WSAEINTR = getattr(py_errno, 'WSAEINTR', None);
+WSAEINVAL = getattr(py_errno, 'WSAEINVAL', None);
+WSAEISCONN = getattr(py_errno, 'WSAEISCONN', None);
+WSAELOOP = getattr(py_errno, 'WSAELOOP', None);
+WSAEMFILE = getattr(py_errno, 'WSAEMFILE', None);
+WSAEMSGSIZE = getattr(py_errno, 'WSAEMSGSIZE', None);
+WSAENAMETOOLONG = getattr(py_errno, 'WSAENAMETOOLONG', None);
+WSAENETDOWN = getattr(py_errno, 'WSAENETDOWN', None);
+WSAENETRESET = getattr(py_errno, 'WSAENETRESET', None);
+WSAENETUNREACH = getattr(py_errno, 'WSAENETUNREACH', None);
+WSAENOBUFS = getattr(py_errno, 'WSAENOBUFS', None);
+WSAENOPROTOOPT = getattr(py_errno, 'WSAENOPROTOOPT', None);
+WSAENOTCONN = getattr(py_errno, 'WSAENOTCONN', None);
+WSAENOTEMPTY = getattr(py_errno, 'WSAENOTEMPTY', None);
+WSAENOTSOCK = getattr(py_errno, 'WSAENOTSOCK', None);
+WSAEOPNOTSUPP = getattr(py_errno, 'WSAEOPNOTSUPP', None);
+WSAEPFNOSUPPORT = getattr(py_errno, 'WSAEPFNOSUPPORT', None);
+WSAEPROCLIM = getattr(py_errno, 'WSAEPROCLIM', None);
+WSAEPROTONOSUPPORT = getattr(py_errno, 'WSAEPROTONOSUPPORT', None);
+WSAEPROTOTYPE = getattr(py_errno, 'WSAEPROTOTYPE', None);
+WSAEREMOTE = getattr(py_errno, 'WSAEREMOTE', None);
+WSAESHUTDOWN = getattr(py_errno, 'WSAESHUTDOWN', None);
+WSAESOCKTNOSUPPORT = getattr(py_errno, 'WSAESOCKTNOSUPPORT', None);
+WSAESTALE = getattr(py_errno, 'WSAESTALE', None);
+WSAETIMEDOUT = getattr(py_errno, 'WSAETIMEDOUT', None);
+WSAETOOMANYREFS = getattr(py_errno, 'WSAETOOMANYREFS', None);
+WSAEUSERS = getattr(py_errno, 'WSAEUSERS', None);
+WSAEWOULDBLOCK = getattr(py_errno, 'WSAEWOULDBLOCK', None);
+WSANOTINITIALISED = getattr(py_errno, 'WSANOTINITIALISED', None);
+WSASYSNOTREADY = getattr(py_errno, 'WSASYSNOTREADY', None);
+WSAVERNOTSUPPORTED = getattr(py_errno, 'WSAVERNOTSUPPORTED', None);
+errorcode = getattr(py_errno, 'errorcode', None);

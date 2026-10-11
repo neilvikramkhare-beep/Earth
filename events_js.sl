@@ -1,0 +1,6 @@
+// Earth Language JS Wrapper for events
+import js_interop
+
+define execute(code):
+    js_code = "const events = require('events');\n" + code;
+    return js_interop.execute_js(js_code);

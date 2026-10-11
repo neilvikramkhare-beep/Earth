@@ -1,17 +1,9 @@
-// SL Package definition for http
-package http;
+// Earth Language Explicit Wrapper for http
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('http')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('http.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'http' has no attribute '" + name + "'")
+py_http = __import__('http')
 
-
-
-define init():
-    pass
+HTTPMethod = getattr(py_http, 'HTTPMethod', None);
+HTTPStatus = getattr(py_http, 'HTTPStatus', None);
+IntEnum = getattr(py_http, 'IntEnum', None);
+StrEnum = getattr(py_http, 'StrEnum', None);

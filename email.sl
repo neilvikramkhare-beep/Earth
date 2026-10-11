@@ -1,17 +1,17 @@
-// SL Package definition for email
-package email;
+// Earth Language Explicit Wrapper for email
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('email')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('email.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'email' has no attribute '" + name + "'")
+py_email = __import__('email')
 
+define message_from_binary_file(*args, **kwargs):
+    return py_email.message_from_binary_file(*args, **kwargs);
 
+define message_from_bytes(*args, **kwargs):
+    return py_email.message_from_bytes(*args, **kwargs);
 
-define init():
-    pass
+define message_from_file(*args, **kwargs):
+    return py_email.message_from_file(*args, **kwargs);
+
+define message_from_string(*args, **kwargs):
+    return py_email.message_from_string(*args, **kwargs);
+

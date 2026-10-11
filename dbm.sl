@@ -1,17 +1,15 @@
-// SL Package definition for dbm
-package dbm;
+// Earth Language Explicit Wrapper for dbm
+py_dbm = __import__('dbm')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('dbm')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('dbm.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'dbm' has no attribute '" + name + "'")
+error = getattr(py_dbm, 'error', None);
+io = getattr(py_dbm, 'io', None);
+ndbm = getattr(py_dbm, 'ndbm', None);
+define open(*args, **kwargs):
+    return py_dbm.open(*args, **kwargs);
 
+os = getattr(py_dbm, 'os', None);
+struct = getattr(py_dbm, 'struct', None);
+sys = getattr(py_dbm, 'sys', None);
+define whichdb(*args, **kwargs):
+    return py_dbm.whichdb(*args, **kwargs);
 
-
-define init():
-    pass

@@ -1,17 +1,26 @@
-// SL Package definition for faulthandler
-package faulthandler;
+// Earth Language Explicit Wrapper for faulthandler
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('faulthandler')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('faulthandler.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'faulthandler' has no attribute '" + name + "'")
+py_faulthandler = __import__('faulthandler')
 
+define cancel_dump_traceback_later(*args, **kwargs):
+    return py_faulthandler.cancel_dump_traceback_later(*args, **kwargs);
 
+define disable(*args, **kwargs):
+    return py_faulthandler.disable(*args, **kwargs);
 
-define init():
-    pass
+define dump_c_stack(*args, **kwargs):
+    return py_faulthandler.dump_c_stack(*args, **kwargs);
+
+define dump_traceback(*args, **kwargs):
+    return py_faulthandler.dump_traceback(*args, **kwargs);
+
+define dump_traceback_later(*args, **kwargs):
+    return py_faulthandler.dump_traceback_later(*args, **kwargs);
+
+define enable(*args, **kwargs):
+    return py_faulthandler.enable(*args, **kwargs);
+
+define is_enabled(*args, **kwargs):
+    return py_faulthandler.is_enabled(*args, **kwargs);
+

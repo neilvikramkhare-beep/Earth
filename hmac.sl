@@ -1,17 +1,18 @@
-// SL Package definition for hmac
-package hmac;
+// Earth Language Explicit Wrapper for hmac
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('hmac')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('hmac.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'hmac' has no attribute '" + name + "'")
+py_hmac = __import__('hmac')
 
+HMAC = getattr(py_hmac, 'HMAC', None);
+define compare_digest(*args, **kwargs):
+    return py_hmac.compare_digest(*args, **kwargs);
 
+define digest(*args, **kwargs):
+    return py_hmac.digest(*args, **kwargs);
 
-define init():
-    pass
+digest_size = getattr(py_hmac, 'digest_size', None);
+define new(*args, **kwargs):
+    return py_hmac.new(*args, **kwargs);
+
+trans_36 = getattr(py_hmac, 'trans_36', None);
+trans_5C = getattr(py_hmac, 'trans_5C', None);

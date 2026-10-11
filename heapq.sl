@@ -1,17 +1,44 @@
-// SL Package definition for heapq
-package heapq;
+// Earth Language Explicit Wrapper for heapq
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('heapq')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('heapq.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'heapq' has no attribute '" + name + "'")
+py_heapq = __import__('heapq')
 
+define heapify(*args, **kwargs):
+    return py_heapq.heapify(*args, **kwargs);
 
+define heapify_max(*args, **kwargs):
+    return py_heapq.heapify_max(*args, **kwargs);
 
-define init():
-    pass
+define heappop(*args, **kwargs):
+    return py_heapq.heappop(*args, **kwargs);
+
+define heappop_max(*args, **kwargs):
+    return py_heapq.heappop_max(*args, **kwargs);
+
+define heappush(*args, **kwargs):
+    return py_heapq.heappush(*args, **kwargs);
+
+define heappush_max(*args, **kwargs):
+    return py_heapq.heappush_max(*args, **kwargs);
+
+define heappushpop(*args, **kwargs):
+    return py_heapq.heappushpop(*args, **kwargs);
+
+define heappushpop_max(*args, **kwargs):
+    return py_heapq.heappushpop_max(*args, **kwargs);
+
+define heapreplace(*args, **kwargs):
+    return py_heapq.heapreplace(*args, **kwargs);
+
+define heapreplace_max(*args, **kwargs):
+    return py_heapq.heapreplace_max(*args, **kwargs);
+
+define merge(*args, **kwargs):
+    return py_heapq.merge(*args, **kwargs);
+
+define nlargest(*args, **kwargs):
+    return py_heapq.nlargest(*args, **kwargs);
+
+define nsmallest(*args, **kwargs):
+    return py_heapq.nsmallest(*args, **kwargs);
+

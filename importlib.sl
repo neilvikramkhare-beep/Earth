@@ -1,17 +1,17 @@
-// SL Package definition for importlib
-package importlib;
+// Earth Language Explicit Wrapper for importlib
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('importlib')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('importlib.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'importlib' has no attribute '" + name + "'")
+py_importlib = __import__('importlib')
 
+define import_module(*args, **kwargs):
+    return py_importlib.import_module(*args, **kwargs);
 
+define invalidate_caches(*args, **kwargs):
+    return py_importlib.invalidate_caches(*args, **kwargs);
 
-define init():
-    pass
+machinery = getattr(py_importlib, 'machinery', None);
+define reload(*args, **kwargs):
+    return py_importlib.reload(*args, **kwargs);
+
+sys = getattr(py_importlib, 'sys', None);
+util = getattr(py_importlib, 'util', None);

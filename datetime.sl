@@ -1,17 +1,13 @@
-// SL Package definition for datetime
-package datetime;
+// Earth Language Explicit Wrapper for datetime
+py_datetime = __import__('datetime')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('datetime')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('datetime.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'datetime' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+MAXYEAR = getattr(py_datetime, 'MAXYEAR', None);
+MINYEAR = getattr(py_datetime, 'MINYEAR', None);
+UTC = getattr(py_datetime, 'UTC', None);
+date = getattr(py_datetime, 'date', None);
+datetime = getattr(py_datetime, 'datetime', None);
+datetime_CAPI = getattr(py_datetime, 'datetime_CAPI', None);
+time = getattr(py_datetime, 'time', None);
+timedelta = getattr(py_datetime, 'timedelta', None);
+timezone = getattr(py_datetime, 'timezone', None);
+tzinfo = getattr(py_datetime, 'tzinfo', None);

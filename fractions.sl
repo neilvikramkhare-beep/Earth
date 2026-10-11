@@ -1,17 +1,12 @@
-// SL Package definition for fractions
-package fractions;
+// Earth Language Explicit Wrapper for fractions
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('fractions')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('fractions.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'fractions' has no attribute '" + name + "'")
+py_fractions = __import__('fractions')
 
-
-
-define init():
-    pass
+Fraction = getattr(py_fractions, 'Fraction', None);
+functools = getattr(py_fractions, 'functools', None);
+math = getattr(py_fractions, 'math', None);
+numbers = getattr(py_fractions, 'numbers', None);
+operator = getattr(py_fractions, 'operator', None);
+re = getattr(py_fractions, 're', None);
+sys = getattr(py_fractions, 'sys', None);
