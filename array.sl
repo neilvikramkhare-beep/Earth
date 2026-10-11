@@ -1,17 +1,8 @@
-// SL Package definition for array
-package array;
+// Earth Language Explicit Wrapper for array
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('array')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('array.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'array' has no attribute '" + name + "'")
+py_array = __import__('array')
 
-
-
-define init():
-    pass
+ArrayType = getattr(py_array, 'ArrayType', None);
+array = getattr(py_array, 'array', None);
+typecodes = getattr(py_array, 'typecodes', None);

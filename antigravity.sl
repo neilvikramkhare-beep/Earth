@@ -1,17 +1,10 @@
-// SL Package definition for antigravity
-package antigravity;
+// Earth Language Explicit Wrapper for antigravity
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('antigravity')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('antigravity.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'antigravity' has no attribute '" + name + "'")
+py_antigravity = __import__('antigravity')
 
+define geohash(*args, **kwargs):
+    return py_antigravity.geohash(*args, **kwargs);
 
-
-define init():
-    pass
+hashlib = getattr(py_antigravity, 'hashlib', None);
+webbrowser = getattr(py_antigravity, 'webbrowser', None);

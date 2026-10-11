@@ -1,17 +1,12 @@
-// SL Package definition for codeop
-package codeop;
+// Earth Language Explicit Wrapper for codeop
+py_codeop = __import__('codeop')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('codeop')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('codeop.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'codeop' has no attribute '" + name + "'")
+CommandCompiler = getattr(py_codeop, 'CommandCompiler', None);
+Compile = getattr(py_codeop, 'Compile', None);
+PyCF_ALLOW_INCOMPLETE_INPUT = getattr(py_codeop, 'PyCF_ALLOW_INCOMPLETE_INPUT', None);
+PyCF_DONT_IMPLY_DEDENT = getattr(py_codeop, 'PyCF_DONT_IMPLY_DEDENT', None);
+PyCF_ONLY_AST = getattr(py_codeop, 'PyCF_ONLY_AST', None);
+define compile_command(*args, **kwargs):
+    return py_codeop.compile_command(*args, **kwargs);
 
-
-
-define init():
-    pass
+warnings = getattr(py_codeop, 'warnings', None);

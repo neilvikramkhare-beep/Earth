@@ -1,17 +1,9 @@
-// SL Package definition for atexit
-package atexit;
+// Earth Language Explicit Wrapper for atexit
+py_atexit = __import__('atexit')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('atexit')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('atexit.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'atexit' has no attribute '" + name + "'")
+define register(*args, **kwargs):
+    return py_atexit.register(*args, **kwargs);
 
+define unregister(*args, **kwargs):
+    return py_atexit.unregister(*args, **kwargs);
 
-
-define init():
-    pass

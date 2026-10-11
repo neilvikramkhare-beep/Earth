@@ -1,17 +1,15 @@
-// SL Package definition for copy
-package copy;
+// Earth Language Explicit Wrapper for copy
+py_copy = __import__('copy')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('copy')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('copy.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'copy' has no attribute '" + name + "'")
+Error = getattr(py_copy, 'Error', None);
+define copy(*args, **kwargs):
+    return py_copy.copy(*args, **kwargs);
 
+define deepcopy(*args, **kwargs):
+    return py_copy.deepcopy(*args, **kwargs);
 
+dispatch_table = getattr(py_copy, 'dispatch_table', None);
+error = getattr(py_copy, 'error', None);
+define replace(*args, **kwargs):
+    return py_copy.replace(*args, **kwargs);
 
-define init():
-    pass

@@ -1,17 +1,21 @@
-// SL Package definition for bisect
-package bisect;
+// Earth Language Explicit Wrapper for bisect
+py_bisect = __import__('bisect')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('bisect')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('bisect.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'bisect' has no attribute '" + name + "'")
+define bisect(*args, **kwargs):
+    return py_bisect.bisect(*args, **kwargs);
 
+define bisect_left(*args, **kwargs):
+    return py_bisect.bisect_left(*args, **kwargs);
 
+define bisect_right(*args, **kwargs):
+    return py_bisect.bisect_right(*args, **kwargs);
 
-define init():
-    pass
+define insort(*args, **kwargs):
+    return py_bisect.insort(*args, **kwargs);
+
+define insort_left(*args, **kwargs):
+    return py_bisect.insort_left(*args, **kwargs);
+
+define insort_right(*args, **kwargs):
+    return py_bisect.insort_right(*args, **kwargs);
+

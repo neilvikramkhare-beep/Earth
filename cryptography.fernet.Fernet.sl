@@ -1,17 +1,5 @@
-// SL Package definition for cryptography.fernet.Fernet
-package cryptography.fernet.Fernet;
+// Earth Language Dynamic Wrapper for cryptography.fernet.Fernet
+import python_interop
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('cryptography.fernet.Fernet')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('cryptography.fernet.Fernet.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'cryptography.fernet.Fernet' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+define get_native_module():
+    return python_interop.import_python_module('cryptography.fernet.Fernet');

@@ -1,17 +1,36 @@
-// SL Package definition for configparser
-package configparser;
+// Earth Language Explicit Wrapper for configparser
+py_configparser = __import__('configparser')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('configparser')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('configparser.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'configparser' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+BasicInterpolation = getattr(py_configparser, 'BasicInterpolation', None);
+ConfigParser = getattr(py_configparser, 'ConfigParser', None);
+ConverterMapping = getattr(py_configparser, 'ConverterMapping', None);
+DEFAULTSECT = getattr(py_configparser, 'DEFAULTSECT', None);
+DuplicateOptionError = getattr(py_configparser, 'DuplicateOptionError', None);
+DuplicateSectionError = getattr(py_configparser, 'DuplicateSectionError', None);
+Error = getattr(py_configparser, 'Error', None);
+ExtendedInterpolation = getattr(py_configparser, 'ExtendedInterpolation', None);
+Interpolation = getattr(py_configparser, 'Interpolation', None);
+InterpolationDepthError = getattr(py_configparser, 'InterpolationDepthError', None);
+InterpolationError = getattr(py_configparser, 'InterpolationError', None);
+InterpolationMissingOptionError = getattr(py_configparser, 'InterpolationMissingOptionError', None);
+InterpolationSyntaxError = getattr(py_configparser, 'InterpolationSyntaxError', None);
+InvalidWriteError = getattr(py_configparser, 'InvalidWriteError', None);
+Iterable = getattr(py_configparser, 'Iterable', None);
+MAX_INTERPOLATION_DEPTH = getattr(py_configparser, 'MAX_INTERPOLATION_DEPTH', None);
+MissingSectionHeaderError = getattr(py_configparser, 'MissingSectionHeaderError', None);
+MultilineContinuationError = getattr(py_configparser, 'MultilineContinuationError', None);
+MutableMapping = getattr(py_configparser, 'MutableMapping', None);
+NoOptionError = getattr(py_configparser, 'NoOptionError', None);
+NoSectionError = getattr(py_configparser, 'NoSectionError', None);
+ParsingError = getattr(py_configparser, 'ParsingError', None);
+RawConfigParser = getattr(py_configparser, 'RawConfigParser', None);
+SectionProxy = getattr(py_configparser, 'SectionProxy', None);
+UNNAMED_SECTION = getattr(py_configparser, 'UNNAMED_SECTION', None);
+UnnamedSectionDisabledError = getattr(py_configparser, 'UnnamedSectionDisabledError', None);
+contextlib = getattr(py_configparser, 'contextlib', None);
+functools = getattr(py_configparser, 'functools', None);
+io = getattr(py_configparser, 'io', None);
+itertools = getattr(py_configparser, 'itertools', None);
+os = getattr(py_configparser, 'os', None);
+re = getattr(py_configparser, 're', None);
+sys = getattr(py_configparser, 'sys', None);

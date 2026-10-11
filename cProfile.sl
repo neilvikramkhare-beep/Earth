@@ -1,17 +1,18 @@
-// SL Package definition for cProfile
-package cProfile;
+// Earth Language Explicit Wrapper for cProfile
+py_cProfile = __import__('cProfile')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('cProfile')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('cProfile.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'cProfile' has no attribute '" + name + "'")
+Profile = getattr(py_cProfile, 'Profile', None);
+importlib = getattr(py_cProfile, 'importlib', None);
+io = getattr(py_cProfile, 'io', None);
+define label(*args, **kwargs):
+    return py_cProfile.label(*args, **kwargs);
 
+define main(*args, **kwargs):
+    return py_cProfile.main(*args, **kwargs);
 
+define run(*args, **kwargs):
+    return py_cProfile.run(*args, **kwargs);
 
-define init():
-    pass
+define runctx(*args, **kwargs):
+    return py_cProfile.runctx(*args, **kwargs);
+

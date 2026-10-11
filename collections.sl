@@ -1,17 +1,16 @@
-// SL Package definition for collections
-package collections;
+// Earth Language Explicit Wrapper for collections
+py_collections = __import__('collections')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('collections')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('collections.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'collections' has no attribute '" + name + "'")
+ChainMap = getattr(py_collections, 'ChainMap', None);
+Counter = getattr(py_collections, 'Counter', None);
+OrderedDict = getattr(py_collections, 'OrderedDict', None);
+UserDict = getattr(py_collections, 'UserDict', None);
+UserList = getattr(py_collections, 'UserList', None);
+UserString = getattr(py_collections, 'UserString', None);
+abc = getattr(py_collections, 'abc', None);
+defaultdict = getattr(py_collections, 'defaultdict', None);
+deque = getattr(py_collections, 'deque', None);
+heapq = getattr(py_collections, 'heapq', None);
+define namedtuple(*args, **kwargs):
+    return py_collections.namedtuple(*args, **kwargs);
 
-
-
-define init():
-    pass

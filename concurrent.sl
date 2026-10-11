@@ -1,17 +1,4 @@
-// SL Package definition for concurrent
-package concurrent;
+// Earth Language Explicit Wrapper for concurrent
+py_concurrent = __import__('concurrent')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('concurrent')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('concurrent.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'concurrent' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+futures = getattr(py_concurrent, 'futures', None);

@@ -1,17 +1,19 @@
-// SL Package definition for abc
-package abc;
+// Earth Language Explicit Wrapper for abc
+// Automatically generated with ALL functions
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('abc')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('abc.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'abc' has no attribute '" + name + "'")
+py_abc = __import__('abc')
 
+ABC = getattr(py_abc, 'ABC', None);
+ABCMeta = getattr(py_abc, 'ABCMeta', None);
+abstractclassmethod = getattr(py_abc, 'abstractclassmethod', None);
+define abstractmethod(*args, **kwargs):
+    return py_abc.abstractmethod(*args, **kwargs);
 
+abstractproperty = getattr(py_abc, 'abstractproperty', None);
+abstractstaticmethod = getattr(py_abc, 'abstractstaticmethod', None);
+define get_cache_token(*args, **kwargs):
+    return py_abc.get_cache_token(*args, **kwargs);
 
-define init():
-    pass
+define update_abstractmethods(*args, **kwargs):
+    return py_abc.update_abstractmethods(*args, **kwargs);
+

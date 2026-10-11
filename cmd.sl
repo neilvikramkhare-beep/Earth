@@ -1,17 +1,7 @@
-// SL Package definition for cmd
-package cmd;
+// Earth Language Explicit Wrapper for cmd
+py_cmd = __import__('cmd')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('cmd')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('cmd.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'cmd' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+Cmd = getattr(py_cmd, 'Cmd', None);
+IDENTCHARS = getattr(py_cmd, 'IDENTCHARS', None);
+PROMPT = getattr(py_cmd, 'PROMPT', None);
+sys = getattr(py_cmd, 'sys', None);

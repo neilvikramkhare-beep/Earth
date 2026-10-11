@@ -1,17 +1,28 @@
-// SL Package definition for copyreg
-package copyreg;
+// Earth Language Explicit Wrapper for copyreg
+py_copyreg = __import__('copyreg')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('copyreg')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('copyreg.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'copyreg' has no attribute '" + name + "'")
+define add_extension(*args, **kwargs):
+    return py_copyreg.add_extension(*args, **kwargs);
 
+define clear_extension_cache(*args, **kwargs):
+    return py_copyreg.clear_extension_cache(*args, **kwargs);
 
+define constructor(*args, **kwargs):
+    return py_copyreg.constructor(*args, **kwargs);
 
-define init():
-    pass
+dispatch_table = getattr(py_copyreg, 'dispatch_table', None);
+define pickle(*args, **kwargs):
+    return py_copyreg.pickle(*args, **kwargs);
+
+define pickle_complex(*args, **kwargs):
+    return py_copyreg.pickle_complex(*args, **kwargs);
+
+define pickle_super(*args, **kwargs):
+    return py_copyreg.pickle_super(*args, **kwargs);
+
+define pickle_union(*args, **kwargs):
+    return py_copyreg.pickle_union(*args, **kwargs);
+
+define remove_extension(*args, **kwargs):
+    return py_copyreg.remove_extension(*args, **kwargs);
+

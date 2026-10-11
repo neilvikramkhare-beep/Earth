@@ -1,17 +1,59 @@
-// SL Package definition for bs4
-package bs4;
+// Earth Language Explicit Wrapper for bs4
+py_bs4 = __import__('bs4')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('bs4')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('bs4.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'bs4' has no attribute '" + name + "'")
+Any = getattr(py_bs4, 'Any', None);
+AttributeResemblesVariableWarning = getattr(py_bs4, 'AttributeResemblesVariableWarning', None);
+BeautifulSoup = getattr(py_bs4, 'BeautifulSoup', None);
+BeautifulStoneSoup = getattr(py_bs4, 'BeautifulStoneSoup', None);
+CData = getattr(py_bs4, 'CData', None);
+CSS = getattr(py_bs4, 'CSS', None);
+Comment = getattr(py_bs4, 'Comment', None);
+Counter = getattr(py_bs4, 'Counter', None);
+CounterType = getattr(py_bs4, 'CounterType', None);
+DEFAULT_OUTPUT_ENCODING = getattr(py_bs4, 'DEFAULT_OUTPUT_ENCODING', None);
+Declaration = getattr(py_bs4, 'Declaration', None);
+Dict = getattr(py_bs4, 'Dict', None);
+Doctype = getattr(py_bs4, 'Doctype', None);
+ElementFilter = getattr(py_bs4, 'ElementFilter', None);
+FeatureNotFound = getattr(py_bs4, 'FeatureNotFound', None);
+Formatter = getattr(py_bs4, 'Formatter', None);
+GuessedAtParserWarning = getattr(py_bs4, 'GuessedAtParserWarning', None);
+HTMLParserTreeBuilder = getattr(py_bs4, 'HTMLParserTreeBuilder', None);
+Iterator = getattr(py_bs4, 'Iterator', None);
+List = getattr(py_bs4, 'List', None);
+MarkupResemblesLocatorWarning = getattr(py_bs4, 'MarkupResemblesLocatorWarning', None);
+NavigableString = getattr(py_bs4, 'NavigableString', None);
+Optional = getattr(py_bs4, 'Optional', None);
+PYTHON_SPECIFIC_ENCODINGS = getattr(py_bs4, 'PYTHON_SPECIFIC_ENCODINGS', None);
+PageElement = getattr(py_bs4, 'PageElement', None);
+ParserRejectedMarkup = getattr(py_bs4, 'ParserRejectedMarkup', None);
+ProcessingInstruction = getattr(py_bs4, 'ProcessingInstruction', None);
+ResultSet = getattr(py_bs4, 'ResultSet', None);
+Script = getattr(py_bs4, 'Script', None);
+Sequence = getattr(py_bs4, 'Sequence', None);
+Sized = getattr(py_bs4, 'Sized', None);
+SoupStrainer = getattr(py_bs4, 'SoupStrainer', None);
+StopParsing = getattr(py_bs4, 'StopParsing', None);
+Stylesheet = getattr(py_bs4, 'Stylesheet', None);
+Tag = getattr(py_bs4, 'Tag', None);
+TemplateString = getattr(py_bs4, 'TemplateString', None);
+TreeBuilder = getattr(py_bs4, 'TreeBuilder', None);
+Type = getattr(py_bs4, 'Type', None);
+UnicodeDammit = getattr(py_bs4, 'UnicodeDammit', None);
+Union = getattr(py_bs4, 'Union', None);
+UnusualUsageWarning = getattr(py_bs4, 'UnusualUsageWarning', None);
+XMLParsedAsHTMLWarning = getattr(py_bs4, 'XMLParsedAsHTMLWarning', None);
+builder = getattr(py_bs4, 'builder', None);
+builder_registry = getattr(py_bs4, 'builder_registry', None);
+define cast(*args, **kwargs):
+    return py_bs4.cast(*args, **kwargs);
 
-
-
-define init():
-    pass
+css = getattr(py_bs4, 'css', None);
+dammit = getattr(py_bs4, 'dammit', None);
+element = getattr(py_bs4, 'element', None);
+exceptions = getattr(py_bs4, 'exceptions', None);
+filter = getattr(py_bs4, 'filter', None);
+formatter = getattr(py_bs4, 'formatter', None);
+io = getattr(py_bs4, 'io', None);
+sys = getattr(py_bs4, 'sys', None);
+warnings = getattr(py_bs4, 'warnings', None);

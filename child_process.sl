@@ -1,17 +1,6 @@
-// SL Package definition for child_process
-package child_process;
+// Earth Language JS Wrapper for child_process
+import js_interop
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('child_process')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('child_process.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'child_process' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+define execute(code):
+    js_code = "const child_process = require('child_process');\n" + code;
+    return js_interop.execute_js(js_code);

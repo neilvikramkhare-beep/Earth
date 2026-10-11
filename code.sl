@@ -1,17 +1,16 @@
-// SL Package definition for code
-package code;
+// Earth Language Explicit Wrapper for code
+py_code = __import__('code')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('code')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('code.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'code' has no attribute '" + name + "'")
+CommandCompiler = getattr(py_code, 'CommandCompiler', None);
+InteractiveConsole = getattr(py_code, 'InteractiveConsole', None);
+InteractiveInterpreter = getattr(py_code, 'InteractiveInterpreter', None);
+Quitter = getattr(py_code, 'Quitter', None);
+builtins = getattr(py_code, 'builtins', None);
+define compile_command(*args, **kwargs):
+    return py_code.compile_command(*args, **kwargs);
 
+define interact(*args, **kwargs):
+    return py_code.interact(*args, **kwargs);
 
-
-define init():
-    pass
+sys = getattr(py_code, 'sys', None);
+traceback = getattr(py_code, 'traceback', None);

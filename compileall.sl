@@ -1,17 +1,23 @@
-// SL Package definition for compileall
-package compileall;
+// Earth Language Explicit Wrapper for compileall
+py_compileall = __import__('compileall')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('compileall')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('compileall.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'compileall' has no attribute '" + name + "'")
+Path = getattr(py_compileall, 'Path', None);
+define compile_dir(*args, **kwargs):
+    return py_compileall.compile_dir(*args, **kwargs);
 
+define compile_file(*args, **kwargs):
+    return py_compileall.compile_file(*args, **kwargs);
 
+define compile_path(*args, **kwargs):
+    return py_compileall.compile_path(*args, **kwargs);
 
-define init():
-    pass
+filecmp = getattr(py_compileall, 'filecmp', None);
+importlib = getattr(py_compileall, 'importlib', None);
+define main(*args, **kwargs):
+    return py_compileall.main(*args, **kwargs);
+
+os = getattr(py_compileall, 'os', None);
+partial = getattr(py_compileall, 'partial', None);
+py_compile = getattr(py_compileall, 'py_compile', None);
+struct = getattr(py_compileall, 'struct', None);
+sys = getattr(py_compileall, 'sys', None);

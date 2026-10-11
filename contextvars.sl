@@ -1,17 +1,9 @@
-// SL Package definition for contextvars
-package contextvars;
+// Earth Language Explicit Wrapper for contextvars
+py_contextvars = __import__('contextvars')
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('contextvars')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('contextvars.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'contextvars' has no attribute '" + name + "'")
+Context = getattr(py_contextvars, 'Context', None);
+ContextVar = getattr(py_contextvars, 'ContextVar', None);
+Token = getattr(py_contextvars, 'Token', None);
+define copy_context(*args, **kwargs):
+    return py_contextvars.copy_context(*args, **kwargs);
 
-
-
-define init():
-    pass

@@ -1,17 +1,5 @@
-// SL Package definition for crypto
-package crypto;
+// Earth Language Dynamic Wrapper for crypto
+import python_interop
 
-define __getattr_sl__(name):
-    _mod = builtins.__import__('importlib').import_module('crypto')
-    try:
-        return builtins.getattr(_mod, name)
-    except builtins.Exception:
-        try:
-            return builtins.__import__('importlib').import_module('crypto.' + name)
-        except builtins.Exception:
-            raise builtins.AttributeError("module 'crypto' has no attribute '" + name + "'")
-
-
-
-define init():
-    pass
+define get_native_module():
+    return python_interop.import_python_module('crypto');
